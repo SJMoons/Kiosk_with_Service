@@ -11,9 +11,12 @@ class BarCodePayFragment: Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         var view: View = inflater.inflate(R.layout.barcodepay_fragment, container, false)
         var cancelBtn = view.findViewById<Button>(R.id.barcode_cancel_btn)
-
+        var completeBtn = view.findViewById<Button>(R.id.barcode_complete_btn)
         cancelBtn!!.setOnClickListener {
             parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, PaymentFragment()).commit()
+        }
+        completeBtn!!.setOnClickListener{
+            parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, CompleteFragment()).commit()
         }
         return view
     }

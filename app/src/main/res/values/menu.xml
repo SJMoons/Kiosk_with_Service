@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="menu_name">
+        <item>americano</item>
+        <item>cafemoka</item>
+        <item>cafelatte</item>
+        <item>cafucino</item>
+        <item>einspener</item>
+        <item>condensed milk cafe latte</item>
+    </string-array>
+
+    <integer-array name="menu_cost">
+        <item>3700</item>
+        <item>4000</item>
+        <item>4000</item>
+        <item>3500</item>
+        <item>3700</item>
+        <item>4000</item>
+    </integer-array>
+    
+    <array name="image_array">
+        <item>@drawable/coffee1</item>
+        <item>@drawable/coffee2</item>
+        <item>@drawable/cafelatte</item>
+        <item>@drawable/cafucino</item>
+        <item>@drawable/einsupaner</item>
+        <item>@drawable/yeonucafelatte</item>
+    </array>
+
+</resources>

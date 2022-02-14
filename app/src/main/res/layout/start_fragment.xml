@@ -29,7 +29,7 @@
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:layout_marginRight="50dp"
-            android:background="#000080"
+            android:background="@drawable/blue_box"
             android:text="To go"
             android:textColor="@color/white" />
 
@@ -38,7 +38,7 @@
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
-            android:background="#000080"
+            android:background="@drawable/blue_box"
             android:text="In store"
             android:textColor="@color/white" />
 

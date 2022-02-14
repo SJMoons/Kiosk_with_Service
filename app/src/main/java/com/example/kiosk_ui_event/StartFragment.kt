@@ -19,6 +19,6 @@ class StartFragment: Fragment() {
         instoreBtn!!.setOnClickListener{
             parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, MenuListFragment()).commit()
         }
-        return view
+         return view
     }
 }

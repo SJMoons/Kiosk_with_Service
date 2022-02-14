@@ -18,7 +18,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="110dp"
+            android:layout_marginTop="90dp"
             android:text="barcode payment"
             android:textAlignment="center"
             android:textSize="30sp" />
@@ -43,10 +43,17 @@
             android:layout_width="150dp"
             android:layout_height="60dp"
             android:layout_marginLeft="90dp"
-            android:background="#000080"
+            android:background="@drawable/ediya_btn"
             android:text="Cancel payment"
             android:textAlignment="center"
             android:textColor="@color/white" />
+        <Button
+            android:id="@+id/barcode_complete_btn"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:text="complete"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="115dp"/>
 
     </LinearLayout>
 
