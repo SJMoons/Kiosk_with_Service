@@ -10,6 +10,22 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_layout)
 
+//        initEvent()
+//    }
+//
+//    fun initEvent() {
+//        var completeBtn = findViewById<Button>(R.id.compelete_btn)
+//
+//        completeBtn!!.setOnClickListener{
+//            toMenuListFragment()
+//        }
+//    }
+//    fun toMenuListFragment() {
+//        var fragment = ClickMenuFragment()
+//        var myBundle = Bundle()
+//    }
+    override fun dataPass(menu:String,cupCount:Int,totalCost:String) {
 
+    }
     }
 }

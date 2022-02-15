@@ -9,6 +9,21 @@
         <item>condensed milk cafe latte</item>
     </string-array>
 
+    <string-array name="ade_name">
+        <item>chocolate</item>
+        <item>민트초콜릿</item>
+        <item>토피넛라떼</item>
+        <item>녹차라떼</item>
+        <item>화이트초콜릿</item>
+        <item>고구마라떼</item>
+    </string-array>
+
+    <string-array name="shake_name">
+        <item>오리진쉐이크</item>
+        <item>초코쿠키쉐이크</item>
+        <item>딸기쉐이크</item>
+    </string-array>
+
     <integer-array name="menu_cost">
         <item>3700</item>
         <item>4000</item>
@@ -16,6 +31,21 @@
         <item>3500</item>
         <item>3700</item>
         <item>4000</item>
+    </integer-array>
+
+    <integer-array name="ade_cost">
+        <item>3700</item>
+        <item>4000</item>
+        <item>4000</item>
+        <item>3500</item>
+        <item>3700</item>
+        <item>4000</item>
+    </integer-array>
+
+    <integer-array name="shake_cost">
+        <item>4800</item>
+        <item>4500</item>
+        <item>4800</item>
     </integer-array>
     
     <array name="image_array">
@@ -26,5 +56,33 @@
         <item>@drawable/einsupaner</item>
         <item>@drawable/yeonucafelatte</item>
     </array>
+
+    <array name="ade_image_array">
+        <item>@drawable/chocolate</item>
+        <item>@drawable/mintchocolate</item>
+        <item>@drawable/topinutlatte</item>
+        <item>@drawable/greentealatte</item>
+        <item>@drawable/whitechocolate</item>
+        <item>@drawable/gogumalatte</item>
+    </array>
+
+    <array name="shake_image_array">
+        <item>@drawable/originshake</item>
+        <item>@drawable/chococookieshake</item>
+        <item>@drawable/strawberryshake</item>
+    </array>
+
+
+    <integer-array name="topping_cost">
+        <item>500</item>
+        <item>500</item>
+        <item>300</item>
+        <item>300</item>
+        <item>300</item>
+        <item>300</item>
+        <item>500</item>
+        <item>1000</item>
+        <item>300</item>
+    </integer-array>
 
 </resources>
