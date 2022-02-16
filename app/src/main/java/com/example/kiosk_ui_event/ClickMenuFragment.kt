@@ -21,8 +21,10 @@ class ClickMenuFragment(): Fragment() {
     var count: Int = 1
     var toppingCountString: String? = ""
     var toppingCountInt: Int = 0
-    var appendTopping = mutableListOf<String>()
+    var appendToppingQuantity = arrayListOf<String>()  //
     var totalToppingPrice = mutableListOf<Int>()
+    var toppingLocationNum = arrayListOf<Int>()   //
+    var appendToppingName = arrayListOf<String>()    //
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -65,7 +67,7 @@ class ClickMenuFragment(): Fragment() {
         selectBtn!!.setOnClickListener {
             parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, MenuListFragment())
                 .commit()
-            dataInterface.dataPass("${menuName}","${count}","${(menuCost!!.toInt()+totalToppingPrice.sum())*count}")
+            dataInterface.dataPass("${menuName}","${count}","${(menuCost!!.toInt()+totalToppingPrice.sum())*count}",appendToppingQuantity,toppingLocationNum,appendToppingName)
         }
         addBtn!!.setOnClickListener {
             topping(menuCost!!)
@@ -85,6 +87,7 @@ class ClickMenuFragment(): Fragment() {
             alertdialog.hide()
         }
 
+        //토핑 개수 표시 알고리즘
         for (i in 0..8) {
             var toppingPlusBtn = popupView.findViewById<Button>(R.id.topping_plus_btn1 + i)
             var toppingCountView = popupView.findViewById<TextView>(R.id.topping_count_view1 + i)
@@ -104,11 +107,17 @@ class ClickMenuFragment(): Fragment() {
                 }
                 toppingCountView.setText(toppingCountInt.toString())
             }
-
+        //플러스한 토핑 개수들과 이름 리스트에 받아놓는 코드
             var completeBtn = popupView.findViewById<Button>(R.id.compelete_btn)
+            var toppingName = resources.getStringArray(R.array.topping_name)
             completeBtn!!.setOnClickListener {
-                for (i in 0..8) {
-                    appendTopping.add(popupView.findViewById<TextView>(R.id.topping_count_view1 + i).getText().toString())
+                for (locationIndex in 0..8) {
+                    var toppingQuantity = popupView.findViewById<TextView>(R.id.topping_count_view1 + locationIndex).getText().toString()
+                    appendToppingQuantity.add(toppingQuantity)
+                    if (toppingQuantity.toInt()>0) {
+                        toppingLocationNum.add(locationIndex)
+                        appendToppingName.add(toppingName[locationIndex])
+                    }
                 }
                 totalPrice(menuCost)
                 alertdialog.hide()
@@ -126,8 +135,8 @@ class ClickMenuFragment(): Fragment() {
     fun totalPrice(menuCost: String) {
         var cost = view?.findViewById<TextView>(R.id.cost)
         var toppingCosts = resources.getIntArray(R.array.topping_cost)
-        for (i in 0 until appendTopping.count()) {
-            totalToppingPrice.add((appendTopping[i].toInt()*toppingCosts[i]))
+        for (i in 0 until appendToppingQuantity.count()) {
+            totalToppingPrice.add((appendToppingQuantity[i].toInt()*toppingCosts[i]))
         }
         Log.d("message","${(menuCost!!.toInt()+totalToppingPrice.sum())*count}")
         cost!!.setText("₩ ${((menuCost!!.toInt()+totalToppingPrice.sum())*count)}")

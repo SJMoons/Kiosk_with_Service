@@ -85,4 +85,16 @@
         <item>300</item>
     </integer-array>
 
+    <string-array name="topping_name">
+        <item>+에스프레소 1샷</item>
+        <item>+휘핑 크림</item>
+        <item>+(시럽)카라멜</item>
+        <item>+(시럽)바닐라</item>
+        <item>+(시럽)헤이즐넛</item>
+        <item>+(토핑)카라멜 소스</item>
+        <item>+(토핑)초콜릿칩</item>
+        <item>+타피오카펄</item>
+        <item>+(시럽)아이리쉬</item>
+    </string-array>
+
 </resources>
