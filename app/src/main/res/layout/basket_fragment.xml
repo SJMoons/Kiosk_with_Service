@@ -23,7 +23,25 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/basket_linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/basket_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </TextView>
+
+        </LinearLayout>
+
 
     </ScrollView>
 
@@ -51,7 +69,7 @@
             android:layout_height="80dp"
             android:layout_marginRight="80dp"
             android:background="@drawable/goback_btn"
-            android:text="go back" />
+            android:text="go menu" />
 
         <TextView
             android:layout_width="30dp"

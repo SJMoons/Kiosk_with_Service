@@ -12,15 +12,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 
-class ClickMenuFragment(clickMenuImage:Int,clickMenuName:String,clickMenuCost:Int): Fragment() {
+class ClickMenuFragment(): Fragment() {
     lateinit var dataInterface: DataInterface
     override fun onAttach(context: Context) {
         super.onAttach(context)
         dataInterface = context as DataInterface
     }
-    var menuImage = clickMenuImage
-    var menuName = clickMenuName
-    var menuCost = clickMenuCost
     var count: Int = 1
     var toppingCountString: String? = ""
     var toppingCountInt: Int = 0
@@ -32,28 +29,34 @@ class ClickMenuFragment(clickMenuImage:Int,clickMenuName:String,clickMenuCost:In
         savedInstanceState: Bundle?
     ): View {
         var view: View = inflater.inflate(R.layout.clickmenu_fragment, container, false)
+
+        var menuName = arguments?.getString("menuName")
+        var menuCost = arguments?.getString("menuCost")
+        var menuImage = arguments?.getString("menuImage")
+
         var cancelBtn = view.findViewById<Button>(R.id.cancel_btn)
         var selectBtn = view.findViewById<Button>(R.id.select_btn)
         var addBtn = view.findViewById<Button>(R.id.add_btn)
         var minusBtn = view.findViewById<Button>(R.id.cups_minus_btn)
         var plusBtn = view.findViewById<Button>(R.id.cups_plus_btn)
+
         var menu = view.findViewById<TextView>(R.id.menu_name)
         menu.setText(menuName)
         var cost = view.findViewById<TextView>(R.id.cost)
         cost.setText("₩ ${menuCost.toString()}")
         var image = view.findViewById<ImageView>(R.id.image)
-        image.setBackgroundResource(menuImage)
+        image.setBackgroundResource(menuImage!!.toInt())
 
         minusBtn!!.setOnClickListener {
             count = count - 1
             if (count < 1) {
                 count = 1
             }
-            cups()
+            cups(menuCost!!)
         }
         plusBtn!!.setOnClickListener {
             count = count + 1
-            cups()
+            cups(menuCost!!)
         }
         cancelBtn!!.setOnClickListener {
             parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, MenuListFragment())
@@ -62,14 +65,15 @@ class ClickMenuFragment(clickMenuImage:Int,clickMenuName:String,clickMenuCost:In
         selectBtn!!.setOnClickListener {
             parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, MenuListFragment())
                 .commit()
+            dataInterface.dataPass("${menuName}","${count}","${(menuCost!!.toInt()+totalToppingPrice.sum())*count}")
         }
         addBtn!!.setOnClickListener {
-            topping()
+            topping(menuCost!!)
         }
         return view
     }
 
-    fun topping() {
+    fun topping(menuCost:String) {
         var popupView = getLayoutInflater().inflate(R.layout.topping_fragment, null)
         var alertdialog = AlertDialog.Builder(context).create()
         alertdialog.setView(popupView)
@@ -106,27 +110,26 @@ class ClickMenuFragment(clickMenuImage:Int,clickMenuName:String,clickMenuCost:In
                 for (i in 0..8) {
                     appendTopping.add(popupView.findViewById<TextView>(R.id.topping_count_view1 + i).getText().toString())
                 }
-                totalPrice()
+                totalPrice(menuCost)
                 alertdialog.hide()
             }
         }
     }
 
-    fun cups() {
+    fun cups(menuCost:String) {
         var cupCount = view?.findViewById<TextView>(R.id.cups_count)
         var cost = view?.findViewById<TextView>(R.id.cost)
         cupCount!!.setText(count.toString())
-        cost!!.setText("₩ ${((menuCost+totalToppingPrice.sum())*count).toString()}")
+        cost!!.setText("₩ ${((menuCost!!.toInt()+totalToppingPrice.sum())*count)}")
     }
 
-    fun totalPrice() {
+    fun totalPrice(menuCost: String) {
         var cost = view?.findViewById<TextView>(R.id.cost)
         var toppingCosts = resources.getIntArray(R.array.topping_cost)
         for (i in 0 until appendTopping.count()) {
             totalToppingPrice.add((appendTopping[i].toInt()*toppingCosts[i]))
         }
-        Log.d("message","${(menuCost+totalToppingPrice.sum())*count}")
-        cost!!.setText("₩ ${((menuCost+totalToppingPrice.sum())*count).toString()}")
-        dataInterface.dataPass(menuName,count,"${(menuCost+totalToppingPrice.sum())*count}")
+        Log.d("message","${(menuCost!!.toInt()+totalToppingPrice.sum())*count}")
+        cost!!.setText("₩ ${((menuCost!!.toInt()+totalToppingPrice.sum())*count)}")
     }
 }
