@@ -16,6 +16,7 @@ class MenuListFragment: Fragment() {
         super.onAttach(context)
         dataInterface = context as DataInterface
     }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         var view : View = inflater.inflate(R.layout.menulist_fragment, container,false)
         var gobackBtn = view.findViewById<Button>(R.id.menu_goback_btn)
@@ -141,7 +142,5 @@ class MenuListFragment: Fragment() {
             }
         }
     }
-
-
 }
 

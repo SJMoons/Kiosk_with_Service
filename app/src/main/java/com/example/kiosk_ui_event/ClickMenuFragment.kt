@@ -25,6 +25,7 @@ class ClickMenuFragment(): Fragment() {
     var totalToppingPrice = mutableListOf<Int>()
     var toppingLocationNum = arrayListOf<Int>()   //
     var appendToppingName = arrayListOf<String>()    //
+    var appendToppingNameNull = arrayListOf<String>()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -138,7 +139,6 @@ class ClickMenuFragment(): Fragment() {
         for (i in 0 until appendToppingQuantity.count()) {
             totalToppingPrice.add((appendToppingQuantity[i].toInt()*toppingCosts[i]))
         }
-        Log.d("message","${(menuCost!!.toInt()+totalToppingPrice.sum())*count}")
         cost!!.setText("₩ ${((menuCost!!.toInt()+totalToppingPrice.sum())*count)}")
     }
 }
