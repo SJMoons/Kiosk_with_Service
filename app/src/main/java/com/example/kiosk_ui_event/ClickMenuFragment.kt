@@ -21,11 +21,11 @@ class ClickMenuFragment(): Fragment() {
     var count: Int = 1
     var toppingCountString: String? = ""
     var toppingCountInt: Int = 0
-    var appendToppingQuantity = arrayListOf<String>()  //
+    var appendToppingQuantity = arrayListOf<String>()
     var totalToppingPrice = mutableListOf<Int>()
-    var toppingLocationNum = arrayListOf<Int>()   //
-    var appendToppingName = arrayListOf<String>()    //
-    var appendToppingNameNull = arrayListOf<String>()
+    var toppingLocationNum = arrayListOf<Int>()
+    var appendToppingName = arrayListOf<String>()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -47,19 +47,19 @@ class ClickMenuFragment(): Fragment() {
         menu.setText(menuName)
         var cost = view.findViewById<TextView>(R.id.cost)
         cost.setText("₩ ${menuCost.toString()}")
-        var image = view.findViewById<ImageView>(R.id.image)
-        image.setBackgroundResource(menuImage!!.toInt())
+        var image = view.findViewById<ImageView>(R.id.menu_image)
+        image.setImageResource(menuImage!!.toInt())
 
         minusBtn!!.setOnClickListener {
             count = count - 1
             if (count < 1) {
                 count = 1
             }
-            cups(menuCost!!)
+            cupsCountCalculate(menuCost!!)
         }
         plusBtn!!.setOnClickListener {
             count = count + 1
-            cups(menuCost!!)
+            cupsCountCalculate(menuCost!!)
         }
         cancelBtn!!.setOnClickListener {
             parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, MenuListFragment())
@@ -71,12 +71,12 @@ class ClickMenuFragment(): Fragment() {
             dataInterface.dataPass("${menuName}","${count}","${(menuCost!!.toInt()+totalToppingPrice.sum())*count}",appendToppingQuantity,toppingLocationNum,appendToppingName)
         }
         addBtn!!.setOnClickListener {
-            topping(menuCost!!)
+            toppingCountCalculate(menuCost!!)
         }
         return view
     }
 
-    fun topping(menuCost:String) {
+    fun toppingCountCalculate(menuCost:String) {
         var popupView = getLayoutInflater().inflate(R.layout.topping_fragment, null)
         var alertdialog = AlertDialog.Builder(context).create()
         alertdialog.setView(popupView)
@@ -126,7 +126,7 @@ class ClickMenuFragment(): Fragment() {
         }
     }
 
-    fun cups(menuCost:String) {
+    fun cupsCountCalculate(menuCost:String) {
         var cupCount = view?.findViewById<TextView>(R.id.cups_count)
         var cost = view?.findViewById<TextView>(R.id.cost)
         cupCount!!.setText(count.toString())

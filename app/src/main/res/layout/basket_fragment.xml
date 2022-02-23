@@ -17,6 +17,7 @@
         tools:layout_editor_absoluteX="0dp" />
 
     <ScrollView
+        android:id="@+id/basket_scrollview"
         android:layout_width="350dp"
         android:layout_height="450dp"
         android:background="#FFFFFF"
@@ -69,7 +70,8 @@
             android:layout_height="80dp"
             android:layout_marginRight="80dp"
             android:background="@drawable/goback_btn"
-            android:text="go menu" />
+            android:text="go menu"
+            android:textColor="@color/ediyacolor"/>
 
         <TextView
             android:layout_width="30dp"

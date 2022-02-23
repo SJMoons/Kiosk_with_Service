@@ -5,4 +5,7 @@ interface DataInterface {
 
     fun clickMenuData(menuImage:String,menuName:String,menuCost:String)
 
+    fun menuListToBasket()
+
+
 }

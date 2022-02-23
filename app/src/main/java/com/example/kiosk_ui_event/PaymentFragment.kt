@@ -16,7 +16,7 @@ class PaymentFragment: Fragment() {
         var barcodePayBtn = view.findViewById<ImageButton>(R.id.barcode_pay_btn)
 
         gobackBtn!!.setOnClickListener{
-            parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, MenuListFragment()).commit()
+            parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, BasketFragment()).commit()
         }
         cardPayBtn!!.setOnClickListener{
             parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, CardPayFragment()).commit()
@@ -24,8 +24,6 @@ class PaymentFragment: Fragment() {
         barcodePayBtn!!.setOnClickListener{
             parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, BarCodePayFragment()).commit()
         }
-
         return view
-
     }
 }
