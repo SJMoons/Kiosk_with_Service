@@ -46,14 +46,30 @@
 
     </ScrollView>
 
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="80dp"
-        android:layout_height="70dp"
-        android:src="@drawable/basket"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="80dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="160dp"
+            android:src="@drawable/basket"/>
+
+        <TextView
+            android:id="@+id/total_count"
+            android:layout_marginLeft="20dp"
+            android:layout_width="100dp"
+            android:layout_height="70dp"/>
+
+    </LinearLayout>
+
+
 
     <LinearLayout
         android:id="@+id/linearLayout9"

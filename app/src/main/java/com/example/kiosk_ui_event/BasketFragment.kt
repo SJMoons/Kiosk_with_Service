@@ -78,8 +78,13 @@ class BasketFragment: Fragment() {
         var basketLayout = view.findViewById<LinearLayout>(R.id.basket_linear)
         var menuParams = LinearLayout.LayoutParams(400, 200)
         var deleteParams = LinearLayout.LayoutParams(100,110)
-        var toppingParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,50)
+//        var toppingParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,50)
         var totalPriceView = view.findViewById<TextView>(R.id.totalprice_view)
+        var totalCountView = view.findViewById<TextView>(R.id.total_count)
+        totalCountView.gravity = Gravity.CENTER
+        totalCountView.setTextSize(Dimension.SP, 20.0f)
+        totalCountView.setTextColor(Color.BLACK)
+        totalCountView.setText("총 ${requestMenu.count()}개")
 
         for (index in 0 until requestMenu.count()) {
             var verticalLayout = LinearLayout(context)
@@ -119,7 +124,7 @@ class BasketFragment: Fragment() {
             requestMenu!!,
             requestCupCount!!,
             requestTotalCost!!,
-            toppingList!!
+            toppingList!!,
         )
     }
 
@@ -129,12 +134,17 @@ class BasketFragment: Fragment() {
             var deleteBtn = view.findViewById<ImageButton>((index+6)*11)
             var verticalLayout = view.findViewById<LinearLayout>((index+2)*7)
             var totalPriceView =  view.findViewById<TextView>(R.id.totalprice_view)
+            var totalCountView = view.findViewById<TextView>(R.id.total_count)
+            totalCountView.gravity = Gravity.CENTER
+            totalCountView.setTextSize(Dimension.SP, 20.0f)
+            totalCountView.setTextColor(Color.BLACK)
             deleteBtn!!.setOnClickListener{
                 basketLayout.removeView(verticalLayout)
                 requestMenu.removeAt(index)
                 requestCupCount.removeAt(index)
                 toppingList.removeAt(index)
                 requestTotalCost.removeAt(index)
+                totalCountView.setText("총 ${requestMenu.count()}개")
                 totalPriceView.setText("₩ ${requestTotalCost.sum()}")
                 if (requestTotalCost.sum()==0) {
                     nothingBasket(view)
@@ -146,6 +156,7 @@ class BasketFragment: Fragment() {
     fun nothingBasket(view: View) {
         var menuParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 200)
         var basketLayout = view.findViewById<LinearLayout>(R.id.basket_linear)
+        var totalPriceView =  view.findViewById<TextView>(R.id.totalprice_view)
         var itemText = TextView(context)
         itemText.setText("장바구니에 메뉴를 넣어주세요")
         itemText.layoutParams = menuParams
@@ -153,6 +164,8 @@ class BasketFragment: Fragment() {
         itemText.setTextSize(Dimension.SP, 24.0f)
         itemText.setTextColor(Color.BLACK)
         basketLayout!!.addView(itemText)
+        totalPriceView.setText("₩ 0")
+
     }
 
 }

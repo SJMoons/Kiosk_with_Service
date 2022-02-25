@@ -68,7 +68,7 @@ class ClickMenuFragment(): Fragment() {
         selectBtn!!.setOnClickListener {
             parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, MenuListFragment())
                 .commit()
-            dataInterface.dataPass("${menuName}","${count}","${(menuCost!!.toInt()+totalToppingPrice.sum())*count}",appendToppingQuantity,toppingLocationNum,appendToppingName)
+            dataInterface.menuInformPass("${menuName}","${count}","${(menuCost!!.toInt()+totalToppingPrice.sum())*count}",appendToppingQuantity,toppingLocationNum,appendToppingName)
         }
         addBtn!!.setOnClickListener {
             toppingCountCalculate(menuCost!!)

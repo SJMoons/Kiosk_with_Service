@@ -93,7 +93,10 @@ class MenuListFragment: Fragment() {
             menuView(view,shakeMenuArray,shakeCostArray,shakeImageArray)
         }
         payBtn!!.setOnClickListener{
-            parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, PaymentFragment()).commit()
+            var mainActivity = activity as MainActivity
+            if(mainActivity.appendMenu.isNotEmpty()){
+                parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, PaymentFragment()).commit()
+            }
         }
     }
 

@@ -2,9 +2,11 @@ package com.example.kiosk_ui_event
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
-import android.widget.TextView
-import kotlinx.android.synthetic.main.basket_fragment.*
+import kotlinx.android.synthetic.main.main_layout.*
+import kotlinx.android.synthetic.main.start_fragment.*
 
 class MainActivity : AppCompatActivity(), DataInterface {
     var appendMenu = ArrayList<String>()
@@ -13,12 +15,55 @@ class MainActivity : AppCompatActivity(), DataInterface {
     var toppingList = ArrayList<String>()
     var text: String = ""
 
+    var currentPosition=0
+
+    //핸들러 설정
+    //ui 변경하기
+//    val handler= Handler(Looper.getMainLooper()){
+//        setPage()
+//        true
+//    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_layout)
+
+//        val adapter=ViewPagerAdapter()
+//        pager.adapter=adapter
+//
+//        //뷰페이저 넘기는 쓰레드
+//        val thread=Thread(PagerRunnable())
+//        thread.start()
     }
 
-    override fun dataPass(menu:String, cupCount:String, totalCost:String, toppingQuantity: ArrayList<String>, toppingLocationNum:ArrayList<Int>, toppingName:ArrayList<String>) {
+//    //페이지 변경하기
+//    fun setPage(){
+//        if(currentPosition==2) {
+//            currentPosition = 0
+//        }
+//            pager.setCurrentItem(currentPosition,true)
+//            currentPosition+=1
+//
+//    }
+//
+//
+////    var startFragment = fragmentArea as StartFragment
+//    //2초 마다 페이지 넘기기
+//    inner class PagerRunnable:Runnable{
+//        override fun run() {
+//            while(true){
+//                Thread.sleep(2000)
+//                handler.sendEmptyMessage(0)
+////                if (startFragment.startNum ==1) {
+////                    break
+////                }
+//            }
+//        }
+//    }
+
+
+
+    override fun menuInformPass(menu:String, cupCount:String, totalCost:String, toppingQuantity: ArrayList<String>, toppingLocationNum:ArrayList<Int>, toppingName:ArrayList<String>) {
         var fragment = BasketFragment()
         var myBundle = Bundle()
 
@@ -63,6 +108,14 @@ class MainActivity : AppCompatActivity(), DataInterface {
         supportFragmentManager.beginTransaction().replace(R.id.fragmentArea, fragment).commit()
     }
 
-    //베스킷 데이터를 페이먼트 프래그먼트에 전달해주기 그리고 페이먼트 에서 메뉴 있나없나 확인하기
-
+    override fun payToBasket() {
+        var fragment = BasketFragment()
+        var myBundle = Bundle()
+        myBundle.putStringArrayList("menu",appendMenu)
+        myBundle.putStringArrayList("cupCount",appendCupCount)
+        myBundle.putIntegerArrayList("totalCost",appendTotalCost)
+        myBundle.putStringArrayList("toppingList",toppingList)
+        fragment.arguments = myBundle
+        supportFragmentManager.beginTransaction().replace(R.id.fragmentArea, fragment).commit()
+    }
 }
