@@ -13,11 +13,11 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 
 class ClickMenuFragment(): Fragment() {
-    lateinit var dataInterface: DataInterface
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        dataInterface = context as DataInterface
-    }
+//    lateinit var dataInterface: DataInterface
+//    override fun onAttach(context: Context) {
+//        super.onAttach(context)
+//        dataInterface = context as DataInterface
+//    }
     var count: Int = 1
     var toppingCountString: String? = ""
     var toppingCountInt: Int = 0
@@ -35,6 +35,7 @@ class ClickMenuFragment(): Fragment() {
 
         var menuName = arguments?.getString("menuName")
         var menuCost = arguments?.getString("menuCost")
+        Log.d("cost","${menuName}")
         var menuImage = arguments?.getString("menuImage")
 
         var cancelBtn = view.findViewById<Button>(R.id.cancel_btn)
@@ -46,7 +47,7 @@ class ClickMenuFragment(): Fragment() {
         var menu = view.findViewById<TextView>(R.id.menu_name)
         menu.setText(menuName)
         var cost = view.findViewById<TextView>(R.id.cost)
-        cost.setText("₩ ${menuCost.toString()}")
+        cost.setText("₩ ${menuCost}")
         var image = view.findViewById<ImageView>(R.id.menu_image)
         image.setImageResource(menuImage!!.toInt())
 
@@ -66,9 +67,12 @@ class ClickMenuFragment(): Fragment() {
                 .commit()
         }
         selectBtn!!.setOnClickListener {
-            parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, MenuListFragment())
-                .commit()
-            dataInterface.menuInformPass("${menuName}","${count}","${(menuCost!!.toInt()+totalToppingPrice.sum())*count}",appendToppingQuantity,toppingLocationNum,appendToppingName)
+//            parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, MenuListFragment())
+//                .commit()
+            var mainActivity = activity as MainActivity
+            mainActivity.basketMenuInformActivity("${menuName}","${count}","${(menuCost!!.toInt()+totalToppingPrice.sum())*count}",appendToppingQuantity,toppingLocationNum)
+            Log.d("dbug","${menuName}")
+//            dataInterface.menuInformPass("${menuName}","${count}","${(menuCost!!.toInt()+totalToppingPrice.sum())*count}",appendToppingQuantity,toppingLocationNum,appendToppingName)
         }
         addBtn!!.setOnClickListener {
             toppingCountCalculate(menuCost!!)

@@ -18,11 +18,11 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 
 class BasketFragment: Fragment() {
-    lateinit var dataInterface: DataInterface
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        dataInterface = context as DataInterface
-    }
+//    lateinit var dataInterface: DataInterface
+//    override fun onAttach(context: Context) {
+//        super.onAttach(context)
+//        dataInterface = context as DataInterface
+//    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -41,6 +41,7 @@ class BasketFragment: Fragment() {
             var requestCupCount = arguments?.getStringArrayList("cupCount")
             var requestTotalCost = arguments?.getIntegerArrayList("totalCost")
             var toppingList = arguments?.getStringArrayList("toppingList")
+
             basketView(
                 view,
                 requestMenu!!,
@@ -57,6 +58,8 @@ class BasketFragment: Fragment() {
 
         payBtn!!.setOnClickListener {
             if (requestMenu!!.count() != 0) {
+                var mainActivity = activity as MainActivity
+                mainActivity.foreGroundServiceStart(requestMenu.count())
                 parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, PaymentFragment())
                     .commit()
             }
@@ -165,7 +168,5 @@ class BasketFragment: Fragment() {
         itemText.setTextColor(Color.BLACK)
         basketLayout!!.addView(itemText)
         totalPriceView.setText("₩ 0")
-
     }
-
 }

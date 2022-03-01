@@ -17,6 +17,8 @@ class CardPayFragment: Fragment() {
             parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, PaymentFragment()).commit()
         }
         completeBtn!!.setOnClickListener{
+            var mainActivity = activity as MainActivity
+            mainActivity.basketServiceStart()
             parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, CompleteFragment()).commit()
         }
         return view

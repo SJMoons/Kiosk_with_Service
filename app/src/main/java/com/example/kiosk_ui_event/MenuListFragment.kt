@@ -1,23 +1,31 @@
 package com.example.kiosk_ui_event
 
+import android.app.Service
 import android.content.Context
+import android.content.ServiceConnection
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.annotation.Dimension
 import androidx.fragment.app.Fragment
+import java.security.Provider
 
 class MenuListFragment: Fragment() {
     lateinit var dataInterface: DataInterface
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        dataInterface = context as DataInterface
-    }
+
+//    override fun onAttach(context: Context) {
+//        super.onAttach(context)
+//        dataInterface = context as DataInterface
+//    }
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         var view : View = inflater.inflate(R.layout.menulist_fragment, container,false)
+        var mainActivity = activity as MainActivity
+        mainActivity.basketServiceStart()
         buttonEvent(view)
         return view
     }
@@ -53,7 +61,9 @@ class MenuListFragment: Fragment() {
             parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, StartFragment()).commit()
         }
         basketBtn!!.setOnClickListener{
-            dataInterface.menuListToBasket()
+            var mainActivity = activity as MainActivity
+            mainActivity.menuListtoBasketActivity()
+//            dataInterface.menuListToBasket()
         }
         menuView(view,coffeeMenuArray,coffeeCostArray,coffeeImageArray)
         coffeeBtn!!.setOnClickListener{
@@ -94,7 +104,7 @@ class MenuListFragment: Fragment() {
         }
         payBtn!!.setOnClickListener{
             var mainActivity = activity as MainActivity
-            if(mainActivity.appendMenu.isNotEmpty()){
+            if(mainActivity.myService!!.appendMenu.isNotEmpty()){
                 parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, PaymentFragment()).commit()
             }
         }
@@ -153,9 +163,12 @@ class MenuListFragment: Fragment() {
             var clickMenuImage = imageArray[index]
             var clickMenuName = menuArray[index]
             var clickMenuCost = costArray[index]
+            Log.d("menu","${clickMenuImage}")
 
             btn!!.setOnClickListener{
-                dataInterface.clickMenuData("${clickMenuImage}","${clickMenuName}","${clickMenuCost}")
+                var mainActivity = activity as MainActivity
+                mainActivity.clickMenuActivity("${clickMenuImage}","${clickMenuName}","${clickMenuCost}")
+//                dataInterface.clickMenuData("${clickMenuImage}","${clickMenuName}","${clickMenuCost}")
             }
         }
     }
