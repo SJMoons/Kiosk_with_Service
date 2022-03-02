@@ -19,24 +19,23 @@ class ForegroundService : Service() {
         const val NOTIFICATION_ID = 10
         const val CHANNEL_ID = "primary_notification_channel"
     }
-    override fun onCreate() {
-        super.onCreate()
+
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        var menuCount = intent?.getStringExtra("menuCount")
+        var totalCost = intent?.getStringExtra("menuTotalCost")
         builder = NotificationCompat.Builder(this, "channel")
         notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             createNotificationChannel()
             val notification = NotificationCompat.Builder(this, CHANNEL_ID)
-                .setContentTitle("MyService is running")
-                .setContentText("MyService is running")
+                .setContentTitle("장바구니")
+                .setSmallIcon(R.drawable.cafelatte)
+                .setContentText("총 ${menuCount}개  ${totalCost}원입니다.")
                 .build()
             Log.d("Test", "start foreground")
             startForeground(NOTIFICATION_ID, notification)
         }
-    }
-
-    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        var menuCount = intent?.getStringExtra("menuCount")
         return super.onStartCommand(intent, flags, startId)
     }
 
@@ -55,8 +54,6 @@ class ForegroundService : Service() {
         notificationManager.createNotificationChannel(
             notificationChannel)
     }
-
-
 
     override fun onBind(p0: Intent?): IBinder? {
         return null

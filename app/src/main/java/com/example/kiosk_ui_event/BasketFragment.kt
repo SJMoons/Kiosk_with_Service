@@ -57,9 +57,10 @@ class BasketFragment: Fragment() {
         }
 
         payBtn!!.setOnClickListener {
+            var requestTotalCost = arguments?.getIntegerArrayList("totalCost")
             if (requestMenu!!.count() != 0) {
                 var mainActivity = activity as MainActivity
-                mainActivity.foreGroundServiceStart(requestMenu.count())
+                mainActivity.foreGroundServiceStart(requestMenu.count(),requestTotalCost!!.sum())
                 parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, PaymentFragment())
                     .commit()
             }

@@ -40,9 +40,10 @@ class MainActivity : AppCompatActivity() {
         bindService(intent, connection, Context.BIND_AUTO_CREATE)
     }
 
-    fun foreGroundServiceStart(menuCount: Int) {
+    fun foreGroundServiceStart(menuCount: Int, totalCost: Int) {
         val intent = Intent(this, ForegroundService::class.java)
             intent.putExtra("menuCount","${menuCount}")
+            intent.putExtra("menuTotalCost","${totalCost}")
             startService(intent)
     }
 

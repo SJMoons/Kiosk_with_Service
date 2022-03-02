@@ -16,17 +16,11 @@ class BasketService : Service(){
     var text: String = ""
     var num = 0
 
-
-    override fun onCreate() {
-        super.onCreate()
-    }
-
     inner class MyBinder : Binder()  {
         fun getService() : BasketService {
             return this@BasketService
         }
     }
-
     val binder = MyBinder()
 
     override fun onBind(intent: Intent): IBinder? {
