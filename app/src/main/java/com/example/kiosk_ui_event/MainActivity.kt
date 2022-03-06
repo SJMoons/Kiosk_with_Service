@@ -1,5 +1,6 @@
 package com.example.kiosk_ui_event
 
+import android.app.NotificationManager
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
@@ -18,7 +19,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_layout)
-
     }
 
     var myService: BasketService? = null
@@ -93,6 +93,25 @@ class MainActivity : AppCompatActivity() {
         var fragment = myService!!.payToBasket()
         supportFragmentManager.beginTransaction().replace(R.id.fragmentArea, fragment).commit()
     }
+
+    fun payToCompleteActivity() {
+        myService!!.payToComplete()
+        payToCompleteReturn()
+    }
+
+    fun payToCompleteReturn() {
+        var fragment = myService!!.payToComplete()
+        supportFragmentManager.beginTransaction().replace(R.id.fragmentArea, fragment).commit()
+        var notification = Intent(this,ForegroundService::class.java)
+        stopService(notification)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        var notification = Intent(this,ForegroundService::class.java)
+        stopService(notification)
+    }
+
 }
 
 //    override fun menuInformPass(menu:String, cupCount:String, totalCost:String, toppingQuantity: ArrayList<String>, toppingLocationNum:ArrayList<Int>, toppingName:ArrayList<String>) {

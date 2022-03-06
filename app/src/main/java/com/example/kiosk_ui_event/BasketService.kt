@@ -14,8 +14,6 @@ class BasketService : Service(){
     var appendTotalCost = ArrayList<Int>()
     var toppingList = ArrayList<String>()
     var text: String = ""
-    var num = 0
-
     inner class MyBinder : Binder()  {
         fun getService() : BasketService {
             return this@BasketService
@@ -56,8 +54,6 @@ class BasketService : Service(){
         var fragment = BasketFragment()
         var myBundle = Bundle()
 
-        Log.d("data","1")
-
         myBundle.putStringArrayList("menu",appendMenu)
         myBundle.putStringArrayList("cupCount",appendCupCount)
         myBundle.putIntegerArrayList("totalCost",appendTotalCost)
@@ -91,11 +87,25 @@ class BasketService : Service(){
         return fragment
     }
 
+    fun payToComplete() : Fragment {
+        var fragment = StartFragment()
+        var myBundle = Bundle()
+        appendMenu.clear()
+        appendCupCount.clear()
+        appendTotalCost.clear()
+        toppingList.clear()
+        myBundle.putStringArrayList("menu",appendMenu)
+        myBundle.putStringArrayList("cupCount",appendCupCount)
+        myBundle.putIntegerArrayList("totalCost",appendTotalCost)
+        myBundle.putStringArrayList("toppingList",toppingList)
+        fragment.arguments = myBundle
+
+        return fragment
+    }
 //    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 //
 //        return super.onStartCommand(intent, flags, startId)
 //    }
-
     override fun onDestroy() {
         super.onDestroy()
     }

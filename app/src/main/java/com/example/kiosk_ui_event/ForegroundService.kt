@@ -6,7 +6,6 @@ import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
-import android.media.session.PlaybackState.ACTION_STOP
 import android.os.Build
 import android.os.IBinder
 import android.util.Log
@@ -58,4 +57,7 @@ class ForegroundService : Service() {
     override fun onBind(p0: Intent?): IBinder? {
         return null
     }
+
+
+
 }

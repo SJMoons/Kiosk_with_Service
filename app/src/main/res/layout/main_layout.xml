@@ -20,7 +20,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView2">
 
         <fragment
-            android:name="com.example.kiosk_ui_event.StartFragment"
+            android:name="com.example.kiosk_ui_event.LoginFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </FrameLayout>

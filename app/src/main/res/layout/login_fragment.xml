@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_marginTop="25dp"
+            android:layout_width="220dp"
+            android:layout_height="220dp"
+            android:layout_marginLeft="92dp"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/ediya_logo2"/>
+
+        <EditText
+            android:textColor="@color/ediyacolor"
+            android:textSize="20sp"
+            android:maxLength="12"
+            android:hint="  ID"
+            android:singleLine="true"
+            android:background="@drawable/cursor_drawable"
+            android:layout_marginBottom="7dp"
+            android:layout_marginLeft="103dp"
+            android:id="@+id/id_text"
+            android:layout_width="200dp"
+            android:layout_height="40dp" />
+
+        <EditText
+            android:textColor="@color/ediyacolor"
+            android:textSize="20sp"
+            android:background="@drawable/cursor_drawable"
+            android:maxLength="12"
+            android:singleLine="true"
+            android:hint="  PW"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="103dp"
+            android:id="@+id/pw_text"
+            android:layout_width="200dp"
+            android:layout_height="40dp" />
+
+        <Button
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/blue_box"
+            android:layout_marginLeft="103dp"
+            android:id="@+id/login_btn"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:textColor="@color/white"
+            android:text="LOGIN" />
+
+        <Button
+            android:textColor="@color/white"
+            android:background="@drawable/blue_box"
+            android:layout_marginLeft="103dp"
+            android:id="@+id/signup_btn"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:text="SIGN Up" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
