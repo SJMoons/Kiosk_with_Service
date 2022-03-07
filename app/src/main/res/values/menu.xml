@@ -1,16 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="menu_name">
+    <string-array name="menu_name_english">
         <item>americano</item>
         <item>cafemoka</item>
         <item>cafelatte</item>
         <item>cafucino</item>
         <item>einspener</item>
+        <item>milklatte</item>
+    </string-array>
+
+    <string-array name="menu_name_korean">
+        <item>아메리카노</item>
+        <item>카페모카</item>
+        <item>카페라떼</item>
+        <item>카푸치노</item>
+        <item>아인슈페너</item>
         <item>연유라떼</item>
     </string-array>
 
-    <string-array name="ade_name">
+
+    <string-array name="ade_name_english">
         <item>chocolate</item>
+        <item>mintchocolate</item>
+        <item>toffeenutlatte</item>
+        <item>greentealatte</item>
+        <item>whitechocolate</item>
+        <item>gogumalatte</item>
+    </string-array>
+
+    <string-array name="ade_name_korean">
+        <item>초콜릿</item>
         <item>민트초콜릿</item>
         <item>토피넛라떼</item>
         <item>녹차라떼</item>
@@ -18,7 +37,13 @@
         <item>고구마라떼</item>
     </string-array>
 
-    <string-array name="shake_name">
+    <string-array name="shake_name_english">
+        <item>originshake</item>
+        <item>cookieshake</item>
+        <item>strawberryshake</item>
+    </string-array>
+
+    <string-array name="shake_name_korean">
         <item>오리진쉐이크</item>
         <item>초코쿠키쉐이크</item>
         <item>딸기쉐이크</item>
@@ -59,6 +84,18 @@
         <item>1000</item>
         <item>300</item>
     </integer-array>
+
+    <string-array name="topping_name_english">
+        <item>+Espresso 1shot</item>
+        <item>+whipped cream</item>
+        <item>+(syrup)Caramel</item>
+        <item>+(syrup)vanilla</item>
+        <item>+(syrup)hazelnut</item>
+        <item>+(topping)caramel sauce</item>
+        <item>+(topping)chocolate chips</item>
+        <item>+tapioca pearl</item>
+        <item>+(syrup)Irish</item>
+    </string-array>
 
     <string-array name="topping_name">
         <item>+에스프레소 1샷</item>

@@ -84,9 +84,10 @@
             android:id="@+id/basket_goback_btn"
             android:layout_width="80dp"
             android:layout_height="80dp"
+            android:layout_gravity="center_horizontal"
             android:layout_marginRight="80dp"
             android:background="@drawable/goback_btn"
-            android:text="go menu"
+            android:text="@string/korean_gomenu"
             android:textColor="@color/ediyacolor"/>
 
         <TextView
@@ -114,7 +115,7 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:background="@drawable/ediya_btn"
-            android:text="pay"
+            android:text="@string/korean_pay"
             android:textColor="@color/white" />
 
     </LinearLayout>

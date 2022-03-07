@@ -161,8 +161,9 @@ class BasketFragment: Fragment() {
         var menuParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 200)
         var basketLayout = view.findViewById<LinearLayout>(R.id.basket_linear)
         var totalPriceView =  view.findViewById<TextView>(R.id.totalprice_view)
+        var text = resources.getString(R.string.korean_please_add_menu_to_cart)
         var itemText = TextView(context)
-        itemText.setText("장바구니에 메뉴를 넣어주세요")
+        itemText.setText(text)
         itemText.layoutParams = menuParams
         itemText.gravity = Gravity.CENTER
         itemText.setTextSize(Dimension.SP, 24.0f)

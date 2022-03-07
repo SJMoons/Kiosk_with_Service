@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="90dp"
-            android:text="credit card payment"
+            android:text="@string/korean_credit_card_payment"
             android:textAlignment="center"
             android:textSize="30sp" />
 
@@ -27,7 +27,7 @@
             android:id="@+id/textView"
             android:layout_width="320dp"
             android:layout_height="100dp"
-            android:text="Please insert your credit card into the slot"
+            android:text="@string/korean_please_insert_your_credit_card_into_the_slot"
             android:textAlignment="center"
             android:textColor="#000000"
             android:textSize="30sp" />
@@ -44,7 +44,7 @@
             android:layout_height="60dp"
             android:layout_marginLeft="90dp"
             android:background="#000080"
-            android:text="Cancel payment"
+            android:text="@string/korean_cancel_payment"
             android:textAlignment="center"
             android:textColor="@color/white" />
 
@@ -52,7 +52,7 @@
             android:id="@+id/card_complete_btn"
             android:layout_width="100dp"
             android:layout_height="60dp"
-            android:text="complete"
+            android:text="@string/korean_complete"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="115dp"/>
 

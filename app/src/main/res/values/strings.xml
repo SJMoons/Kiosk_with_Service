@@ -1,3 +1,51 @@
 <resources>
     <string name="app_name">kiosk_ui_event</string>
+    <string name="korean_togo">포장</string>
+    <string name="korean_instore">매장</string>
+
+
+    <string name="korean_coffee_category">커피</string>
+    <string name="korean_ade_category">에이드</string>
+    <string name="korean_shake_category">쉐이크</string>
+    <string name="korean_flatcino_category">플랫치노</string>
+    <string name="korean_bread_category">빵</string>
+    <string name="korean_topping_add">추가</string>
+    <string name="korean_goback">뒤로가기</string>
+    <string name="korean_basket">장바구니</string>
+    <string name="korean_pay">결제</string>
+
+    <string name="korean_cancel">취소</string>
+    <string name="korean_select">확인</string>
+
+    <string name="korean_gomenu">메뉴로\n 가기</string>
+    <string name="korean_gobasket">장바구니\n 가기</string>
+
+    <string name="korean_cancel_payment">결제취소</string>
+
+    <string name="korean_complete">완료</string>
+
+    <string name="korean_done">완료</string>
+
+    <string name="korean_card">카드</string>
+
+    <string name="korean_barcord">바코드</string>
+
+    <string name="korean_credit_card_payment">신용카드 결제</string>
+
+    <string name="korean_order_number">주문 번호</string>
+
+    <string name="korean_please_insert_your_credit_card_into_the_slot">신용카드를 슬롯에 \n넣어주세요</string>
+
+    <string name="korean_please_wait_for_the_receipt_to_bo_printed">영수증이 프린트 중.. \n기다려주세요</string>
+
+    <string name="korean_thank_you">감사합니다</string>
+
+    <string name="korean_barcode_payment">바코드 결제</string>
+
+    <string name="korean_please_put_the_barcode_on_the_screen">바코드를 대주세요</string>
+    
+    <string name="korean_please_add_menu_to_cart">장바구니에 메뉴를 넣어주세요</string>
+
+
+
 </resources>

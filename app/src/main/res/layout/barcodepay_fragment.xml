@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="90dp"
-            android:text="barcode payment"
+            android:text="@string/korean_barcode_payment"
             android:textAlignment="center"
             android:textSize="30sp" />
 
@@ -27,7 +27,7 @@
             android:id="@+id/textView"
             android:layout_width="320dp"
             android:layout_height="100dp"
-            android:text="Please put the barcode on the screen"
+            android:text="@string/korean_please_put_the_barcode_on_the_screen"
             android:textAlignment="center"
             android:textColor="#000000"
             android:textSize="30sp" />
@@ -44,14 +44,14 @@
             android:layout_height="60dp"
             android:layout_marginLeft="90dp"
             android:background="@drawable/ediya_btn"
-            android:text="Cancel payment"
+            android:text="@string/korean_cancel_payment"
             android:textAlignment="center"
             android:textColor="@color/white" />
         <Button
             android:id="@+id/barcode_complete_btn"
             android:layout_width="100dp"
             android:layout_height="60dp"
-            android:text="complete"
+            android:text="@string/korean_complete"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="115dp"/>
 

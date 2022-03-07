@@ -48,7 +48,7 @@
             android:layout_width="100dp"
             android:layout_height="40dp"
             android:layout_marginRight="90dp"
-            android:text="card"
+            android:text="@string/korean_card"
             android:textAlignment="center"
             android:textColor="#000000"
             android:textSize="30dp" />
@@ -56,7 +56,7 @@
         <TextView
             android:layout_width="130dp"
             android:layout_height="40dp"
-            android:text="barcode"
+            android:text="@string/korean_barcord"
             android:textAlignment="center"
             android:textColor="#000000"
             android:textSize="30dp" />
@@ -70,7 +70,7 @@
         android:layout_marginTop="70dp"
         android:layout_marginLeft="20dp"
         android:textColor="@color/ediyacolor"
-        android:text="go\nbasket"
+        android:text="@string/korean_gobasket"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 

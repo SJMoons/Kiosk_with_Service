@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.annotation.Dimension
 import androidx.fragment.app.Fragment
+import kotlinx.android.synthetic.main.login_fragment.*
 import java.security.Provider
 
 class MenuListFragment: Fragment() {
@@ -27,88 +28,104 @@ class MenuListFragment: Fragment() {
         var mainActivity = activity as MainActivity
         mainActivity.basketServiceStart()
         buttonEvent(view)
+
         return view
     }
 
+
+
     fun buttonEvent(view:View) {
-        var gobackBtn = view.findViewById<Button>(R.id.menu_goback_btn)
-        var basketBtn = view.findViewById<Button>(R.id.basket_btn)
-        var payBtn = view.findViewById<Button>(R.id.basket_pay_btn)
-        var coffeeBtn = view.findViewById<Button>(R.id.coffeeBtn)
-        var adeBtn = view.findViewById<Button>(R.id.adeBtn)
-        var shackeBtn = view.findViewById<Button>(R.id.shakeBtn)
+            var gobackBtn = view.findViewById<Button>(R.id.menu_goback_btn)
+            var basketBtn = view.findViewById<Button>(R.id.basket_btn)
+            var payBtn = view.findViewById<Button>(R.id.basket_pay_btn)
+            var coffeeBtn = view.findViewById<Button>(R.id.coffeeBtn)
+            var adeBtn = view.findViewById<Button>(R.id.adeBtn)
+            var shackeBtn = view.findViewById<Button>(R.id.shakeBtn)
 
-        var coffeeMenuArray = resources.getStringArray(R.array.menu_name)
-        var coffeeCostArray = resources.getIntArray(R.array.menu_cost)
-        var coffeeImageArray = arrayListOf<Int>(R.drawable.coffee1,R.drawable.coffee2,R.drawable.cafelatte,R.drawable.cafucino,R.drawable.einsupaner,R.drawable.yeonucafelatte)
+            var coffeeMenuArray = resources.getStringArray(R.array.menu_name_english)
+            var coffeeCostArray = resources.getIntArray(R.array.menu_cost)
+            var coffeeImageArray = arrayListOf<Int>(
+                R.drawable.coffee1,
+                R.drawable.coffee2,
+                R.drawable.cafelatte,
+                R.drawable.cafucino,
+                R.drawable.einsupaner,
+                R.drawable.yeonucafelatte
+            )
 
-        var adeMenuArray = resources.getStringArray(R.array.ade_name)
-        var adeCostArray = resources.getIntArray(R.array.ade_cost)
-        var adeImageArray = arrayListOf<Int>(R.drawable.chocolate,
+            var adeMenuArray = resources.getStringArray(R.array.ade_name_english)
+            var adeCostArray = resources.getIntArray(R.array.ade_cost)
+            var adeImageArray = arrayListOf<Int>(
+                R.drawable.chocolate,
                 R.drawable.mintchocolate,
                 R.drawable.topinutlatte,
                 R.drawable.greentealatte,
                 R.drawable.whitechocolate,
-                R.drawable.gogumalatte)
+                R.drawable.gogumalatte
+            )
 
-        var shakeMenuArray = resources.getStringArray(R.array.shake_name)
-        var shakeCostArray = resources.getIntArray(R.array.shake_cost)
-        var shakeImageArray = arrayListOf<Int>(R.drawable.originshake,
+            var shakeMenuArray = resources.getStringArray(R.array.shake_name_english)
+            var shakeCostArray = resources.getIntArray(R.array.shake_cost)
+            var shakeImageArray = arrayListOf<Int>(
+                R.drawable.originshake,
                 R.drawable.chococookieshake,
-                R.drawable.strawberryshake)
+                R.drawable.strawberryshake
+            )
 
-        gobackBtn!!.setOnClickListener{
-            parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, StartFragment()).commit()
-        }
-        basketBtn!!.setOnClickListener{
-            var mainActivity = activity as MainActivity
-            mainActivity.menuListtoBasketActivity()
+            gobackBtn!!.setOnClickListener {
+                parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, StartFragment())
+                    .commit()
+            }
+            basketBtn!!.setOnClickListener {
+                var mainActivity = activity as MainActivity
+                mainActivity.menuListtoBasketActivity()
 //            dataInterface.menuListToBasket()
-        }
-        menuView(view,coffeeMenuArray,coffeeCostArray,coffeeImageArray)
-        coffeeBtn!!.setOnClickListener{
-            coffeeBtn.setTextColor((getResources().getColor(R.color.ediyacolor)))
-            coffeeBtn.setBackgroundResource(R.drawable.whitebox_line)
+            }
+            menuView(view, coffeeMenuArray, coffeeCostArray, coffeeImageArray)
+            coffeeBtn!!.setOnClickListener {
+                coffeeBtn.setTextColor((getResources().getColor(R.color.ediyacolor)))
+                coffeeBtn.setBackgroundResource(R.drawable.whitebox_line)
 
-            adeBtn.setTextColor((getResources().getColor(R.color.white)))
-            adeBtn.setBackgroundResource(R.drawable.blue_box)
+                adeBtn.setTextColor((getResources().getColor(R.color.white)))
+                adeBtn.setBackgroundResource(R.drawable.blue_box)
 
-            shackeBtn.setTextColor((getResources().getColor(R.color.white)))
-            shackeBtn.setBackgroundResource(R.drawable.blue_box)
+                shackeBtn.setTextColor((getResources().getColor(R.color.white)))
+                shackeBtn.setBackgroundResource(R.drawable.blue_box)
 
-            menuView(view,coffeeMenuArray,coffeeCostArray,coffeeImageArray)
-        }
-        adeBtn!!.setOnClickListener{
-            adeBtn.setTextColor((getResources().getColor(R.color.ediyacolor)))  //getColor의 사용법이 바뀜, 용법이 바뀌었거나 사라질 용법
-            adeBtn.setBackgroundResource(R.drawable.whitebox_line)
+                menuView(view, coffeeMenuArray, coffeeCostArray, coffeeImageArray)
+            }
+            adeBtn!!.setOnClickListener {
+                adeBtn.setTextColor((getResources().getColor(R.color.ediyacolor)))  //getColor의 사용법이 바뀜, 용법이 바뀌었거나 사라질 용법
+                adeBtn.setBackgroundResource(R.drawable.whitebox_line)
 
-            coffeeBtn.setTextColor((resources.getColor(R.color.white)))
-            coffeeBtn.setBackgroundResource(R.drawable.blue_box)
+                coffeeBtn.setTextColor((resources.getColor(R.color.white)))
+                coffeeBtn.setBackgroundResource(R.drawable.blue_box)
 
-            shackeBtn.setTextColor((getResources().getColor(R.color.white)))
-            shackeBtn.setBackgroundResource(R.drawable.blue_box)
+                shackeBtn.setTextColor((getResources().getColor(R.color.white)))
+                shackeBtn.setBackgroundResource(R.drawable.blue_box)
 
-            menuView(view,adeMenuArray,adeCostArray,adeImageArray)
-        }
-        shackeBtn!!.setOnClickListener{
-            shackeBtn.setTextColor((getResources().getColor(R.color.ediyacolor)))
-            shackeBtn.setBackgroundResource(R.drawable.whitebox_line)
+                menuView(view, adeMenuArray, adeCostArray, adeImageArray)
+            }
+            shackeBtn!!.setOnClickListener {
+                shackeBtn.setTextColor((getResources().getColor(R.color.ediyacolor)))
+                shackeBtn.setBackgroundResource(R.drawable.whitebox_line)
 
-            coffeeBtn.setTextColor((getResources().getColor(R.color.white)))
-            coffeeBtn.setBackgroundResource(R.drawable.blue_box)
+                coffeeBtn.setTextColor((getResources().getColor(R.color.white)))
+                coffeeBtn.setBackgroundResource(R.drawable.blue_box)
 
-            adeBtn.setTextColor((getResources().getColor(R.color.white)))
-            adeBtn.setBackgroundResource(R.drawable.blue_box)
+                adeBtn.setTextColor((getResources().getColor(R.color.white)))
+                adeBtn.setBackgroundResource(R.drawable.blue_box)
 
-            menuView(view,shakeMenuArray,shakeCostArray,shakeImageArray)
-        }
-        payBtn!!.setOnClickListener{
-            var mainActivity = activity as MainActivity
-            if(mainActivity.myService!!.appendMenu.isNotEmpty()){
-                parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, PaymentFragment()).commit()
+                menuView(view, shakeMenuArray, shakeCostArray, shakeImageArray)
+            }
+            payBtn!!.setOnClickListener {
+                var mainActivity = activity as MainActivity
+                if (mainActivity.myService!!.appendMenu.isNotEmpty()) {
+                    parentFragmentManager.beginTransaction()
+                        .replace(R.id.fragmentArea, PaymentFragment()).commit()
+                }
             }
         }
-    }
 
     fun menuView(view:View,menuArray:kotlin.Array<String>,costArray:IntArray,imageArray:ArrayList<Int>) {
         var removeCoffeeMenu =  view.findViewById<LinearLayout>(R.id.menuLayout)
@@ -173,4 +190,5 @@ class MenuListFragment: Fragment() {
         }
     }
 }
+
 

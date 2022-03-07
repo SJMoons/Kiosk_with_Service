@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">kiosk_ui_event</string>
+    <string name="korean_togo">To go</string>
+    <string name="korean_instore">In store</string>
+    <string name="korean_coffee_category">coffee</string>
+    <string name="korean_ade_category">ade</string>
+    <string name="korean_shake_category">shake</string>
+    <string name="korean_flatcino_category">platcino</string>
+    <string name="korean_bread_category">bread</string>
+    <string name="korean_topping_add">add</string>
+    <string name="korean_goback">go back</string>
+    <string name="korean_basket">basket</string>
+    <string name="korean_pay">pay</string>
+    <string name="korean_cancel">cancel</string>
+    <string name="korean_select">select</string>
+    <string name="korean_gomenu">go menu</string>
+    <string name="korean_gobasket">go basket</string>
+    <string name="korean_cancel_payment">cancel payment</string>
+    <string name="korean_complete">complete</string>
+    <string name="korean_done">done</string>
+    <string name="korean_card">card</string>
+    <string name="korean_barcord">barcord</string>
+    <string name="korean_credit_card_payment">credit card payment</string>
+    <string name="korean_please_insert_your_credit_card_into_the_slot">Please insert your credit card into the slot</string>
+    <string name="korean_thank_you">Thank you</string>
+    <string name="korean_please_wait_for_the_receipt_to_bo_printed">Please wait for the receipt to be printied</string>
+    <string name="korean_order_number">Order Number</string>
+    <string name="korean_barcode_payment">barcode payment</string>
+    <string name="korean_please_put_the_barcode_on_the_screen">Please put the barcode on the screen</string>
+    <string name="korean_please_add_menu_to_cart">Please add menu to cart</string>
+</resources>

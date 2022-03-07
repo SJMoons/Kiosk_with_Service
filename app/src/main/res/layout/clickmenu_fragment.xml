@@ -101,7 +101,7 @@
             android:layout_width="70dp"
             android:layout_height="40dp"
             android:background="@drawable/ediya_btn"
-            android:text="Add"
+            android:text="@string/korean_topping_add"
             android:textColor="@color/white" />
 
     </LinearLayout>
@@ -121,14 +121,14 @@
             android:layout_height="50dp"
             android:layout_marginRight="60dp"
             android:background="@drawable/goback_btn"
-            android:text="cancel" />
+            android:text="@string/korean_cancel" />
 
         <Button
             android:id="@+id/select_btn"
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:background="@drawable/ediya_btn"
-            android:text="select"
+            android:text="@string/korean_select"
             android:textColor="@color/white" />
     </LinearLayout>
 

@@ -26,7 +26,7 @@
         <TextView
             android:layout_width="300dp"
             android:layout_height="80dp"
-            android:text="Order Number"
+            android:text="@string/korean_order_number"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="40sp" />
@@ -43,7 +43,7 @@
         <TextView
             android:layout_width="300dp"
             android:layout_height="100dp"
-            android:text="Please wait for the receipt to be printed."
+            android:text="@string/korean_please_wait_for_the_receipt_to_bo_printed"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="30sp" />
@@ -59,13 +59,13 @@
             android:layout_width="120dp"
             android:layout_height="50dp"
             android:textSize="25sp"
-            android:text = "done"
+            android:text = "@string/korean_done"
             android:layout_marginLeft="85dp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:text="Thank You"
+            android:text="@string/korean_thank_you"
             android:textAlignment="center"
             android:textColor="@color/ediyacolor"
             android:textSize="30sp" />

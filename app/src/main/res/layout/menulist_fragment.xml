@@ -27,7 +27,7 @@
                 android:layout_height="40dp"
                 android:layout_marginRight="5dp"
                 android:background="@drawable/whitebox_line"
-                android:text="COFFEE"
+                android:text="@string/korean_coffee_category"
                 android:textColor="@color/ediyacolor" />
 
             <Button
@@ -36,7 +36,7 @@
                 android:layout_height="40dp"
                 android:layout_marginRight="5dp"
                 android:background="@drawable/blue_box"
-                android:text="ADE"
+                android:text="@string/korean_ade_category"
                 android:textColor="@color/white" />
 
             <Button
@@ -45,7 +45,7 @@
                 android:layout_height="40dp"
                 android:layout_marginRight="5dp"
                 android:background="@drawable/blue_box"
-                android:text="SHAKE"
+                android:text="@string/korean_shake_category"
                 android:textColor="@color/white" />
 
 
@@ -54,7 +54,7 @@
                 android:layout_height="40dp"
                 android:layout_marginRight="5dp"
                 android:background="@drawable/blue_box"
-                android:text="FLATCINO"
+                android:text="@string/korean_flatcino_category"
                 android:textColor="@color/white" />
 
 
@@ -63,7 +63,7 @@
                 android:layout_height="40dp"
                 android:layout_marginRight="5dp"
                 android:background="@drawable/blue_box"
-                android:text="Bread"
+                android:text="@string/korean_bread_category"
                 android:textColor="@color/white" />
 
         </LinearLayout>
@@ -113,7 +113,7 @@
             android:layout_marginBottom="10dp"
             android:textColor="@color/ediyacolor"
             android:background="@drawable/goback_btn"
-            android:text="go back" />
+            android:text="@string/korean_goback" />
 
         <Button
             android:id="@+id/basket_btn"
@@ -123,7 +123,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/ediya_btn"
-            android:text="Basket"
+            android:text="@string/korean_basket"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/button" />
@@ -135,7 +135,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/ediya_btn"
-            android:text="pay"
+            android:text="@string/korean_pay"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
