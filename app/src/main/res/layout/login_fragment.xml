@@ -23,7 +23,7 @@
 
         <EditText
             android:textColor="@color/ediyacolor"
-            android:textSize="20sp"
+            android:textSize="25sp"
             android:maxLength="12"
             android:hint="  ID"
             android:singleLine="true"
@@ -35,6 +35,7 @@
             android:layout_height="40dp" />
 
         <EditText
+            android:inputType="textPassword"
             android:textColor="@color/ediyacolor"
             android:textSize="20sp"
             android:background="@drawable/cursor_drawable"
@@ -75,16 +76,16 @@
             android:layout_height="wrap_content">
 
             <RadioButton
-                android:id="@+id/english_btn"
-                android:layout_width="100dp"
-                android:layout_height="40dp"
-                android:text="English"/>
-
-            <RadioButton
                 android:id="@+id/korean_btn"
                 android:layout_width="100dp"
                 android:layout_height="40dp"
                 android:text="한국어"/>
+
+            <RadioButton
+                android:id="@+id/english_btn"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:text="English"/>
         </RadioGroup>
 
     </LinearLayout>

@@ -13,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.IBinder
 import android.util.Log
+import android.widget.Button
+import android.widget.EditText
 import android.widget.RadioButton
 import androidx.core.app.ActivityCompat
 import kotlinx.android.synthetic.main.clickmenu_fragment.*
@@ -26,6 +28,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_layout)
+
+        DataBase(this,"Account.db",null,1)  //데어터베이스 class 객체 선언
 
         var korean = findViewById<RadioButton>(R.id.korean_btn)
         var english = findViewById<RadioButton>(R.id.english_btn)
@@ -42,10 +46,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         // 저장된 언어코드에 따라 라디오 버튼을 체크해준다.
-        if(language_code.equals("en") || language_code.equals("")){
-            english.setChecked(true);
-        }else{
+        if(language_code.equals("ko") || language_code.equals("")){
             korean.setChecked(true);
+        }else{
+            english.setChecked(true);
         }
 
         //한국어 라디오 버튼 변경
@@ -58,8 +62,6 @@ class MainActivity : AppCompatActivity() {
             setLocate("en")
             recreate()
         }
-
-
     }
 
 

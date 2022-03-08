@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.RadioButton
 import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
@@ -25,30 +26,30 @@ class LoginFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View {
         var view: View = inflater.inflate(R.layout.login_fragment, container, false)
-        var loginBtn = view.findViewById<Button>(R.id.login_btn)
         var signupBtn = view.findViewById<Button>(R.id.signup_btn)
-
-        loginBtn.setOnClickListener{
-            parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, StartFragment()).commit()
-        }
 
         signupBtn.setOnClickListener{
             parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, SignupFragment()).commit()
         }
 
-//        language_group.setOnClickListener{
-//            when(language_group.checkedRadioButtonId) {
-//                R.id.korean_btn
-//
-//            }
-//        }
+        val db = DataBase(context,"Account.db",null,1)  //데어터베이스 class 객체 선언
+        val readableDb = db.readableDatabase            //데이터베이스 객체를 읽기 가능 상태로 만듦
+        val loginBtn = view.findViewById<Button>(R.id.login_btn)
 
+        loginBtn.setOnClickListener{
+            val idValue = view.findViewById<EditText>(R.id.id_text).text.toString()
+            val pwValue = view.findViewById<EditText>(R.id.pw_text).text.toString()
+            val dbControl = DatabaseControl()
 
+            var idPwData = arrayListOf<String>(idValue,pwValue)
+            var idPwColumn = arrayListOf<String>("id","pw")
+            val dataList = dbControl.read(readableDb,"idpw_table",idPwColumn,idPwData)
+            if (dataList.size == 0) {
+                Log.d("login result","login fault")
+            }else {
+                parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, StartFragment()).commit()
+            }
+        }
         return view
     }
-
-
-
-
-
 }

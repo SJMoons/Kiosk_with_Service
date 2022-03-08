@@ -25,6 +25,7 @@
             android:layout_height="wrap_content">
 
             <EditText
+                android:id="@+id/first_name_text"
                 android:background="@drawable/cursor_drawable"
                 android:hint=" First Name"
                 android:layout_marginRight="30dp"
@@ -33,6 +34,7 @@
                 android:layout_height="40dp"/>
 
             <EditText
+                android:id="@+id/last_name_text"
                 android:background="@drawable/cursor_drawable"
                 android:hint=" Last Name"
                 android:layout_width="100dp"
@@ -89,18 +91,21 @@
 
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
                 <EditText
+                    android:id="@+id/user_name_text"
+                    android:maxLength="12"
                     android:background="@drawable/cursor_drawable"
-                    android:hint=" Username"
+                    android:hint=" Username(ID)"
                     android:layout_marginLeft="30dp"
                     android:layout_marginBottom="15dp"
                     android:layout_width="220dp"
                     android:layout_height="40dp"/>
 
                 <EditText
+                    android:id="@+id/email_text"
                     android:background="@drawable/cursor_drawable"
                     android:hint=" Email"
                     android:layout_marginLeft="30dp"
@@ -109,6 +114,7 @@
                     android:layout_height="40dp"/>
 
                 <EditText
+                    android:id="@+id/phone_num_text"
                     android:background="@drawable/cursor_drawable"
                     android:hint=" Tel. Number"
                     android:layout_marginLeft="30dp"
@@ -117,6 +123,8 @@
                     android:layout_height="40dp"/>
 
                 <EditText
+                    android:inputType="textPassword"
+                    android:id="@+id/password_text"
                     android:background="@drawable/cursor_drawable"
                     android:hint=" Password"
                     android:layout_marginLeft="30dp"
@@ -125,6 +133,7 @@
                     android:layout_height="40dp"/>
 
                 <EditText
+                    android:inputType="textPassword"
                     android:background="@drawable/cursor_drawable"
                     android:hint=" Confirm Password"
                     android:layout_marginBottom="15dp"
@@ -133,6 +142,20 @@
                     android:layout_height="40dp"/>
 
             </LinearLayout>
+
+                <Button
+                    android:id="@+id/id_check_btn"
+                    android:text="id check"
+                    android:textSize="10sp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/ediya_btn"
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="55dp"
+                    android:layout_height="40dp">
+
+                </Button>
+
+
 
 
         </LinearLayout>
