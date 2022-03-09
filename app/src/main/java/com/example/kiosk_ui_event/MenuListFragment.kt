@@ -32,8 +32,6 @@ class MenuListFragment: Fragment() {
         return view
     }
 
-
-
     fun buttonEvent(view:View) {
             var gobackBtn = view.findViewById<Button>(R.id.menu_goback_btn)
             var basketBtn = view.findViewById<Button>(R.id.basket_btn)

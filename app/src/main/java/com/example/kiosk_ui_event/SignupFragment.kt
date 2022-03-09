@@ -13,8 +13,9 @@ import androidx.fragment.app.Fragment
 import android.widget.Toast
 
 import android.content.DialogInterface
-
-
+import android.text.Editable
+import android.text.TextWatcher
+import kotlinx.android.synthetic.main.signup_fragment.*
 
 
 class SignupFragment : Fragment() {
@@ -32,11 +33,20 @@ class SignupFragment : Fragment() {
         val readableDb = db.readableDatabase//데이터베이스 객체를 읽기 가능 상태로 만듦
         val writeableDb = db.writableDatabase
 
+        var numberList = arrayListOf<String>("0","1","2","3","4","5","6","7","8","9")
+        var passWord = view.findViewById<EditText>(R.id.edit_up_pw)
+        var confirmBtn = view.findViewById<Button>(R.id.confirm_btn)
+
+        phoneCheck(view,numberList,confirmBtn)
+        pwMatchMismatch(view,passWord,confirmBtn)
+        pwCheck(passWord,confirmBtn,numberList)
+
+
         cancelBtn.setOnClickListener{
             parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, LoginFragment()).commit()
         }
         val idCheckBtn = view.findViewById<Button>(R.id.id_check_btn)
-        val confirmBtn = view.findViewById<Button>(R.id.confirm_btn)
+//        val confirmBtn = view.findViewById<Button>(R.id.confirm_btn)
 
         idCheckBtn.setOnClickListener{
             idCheck(view,readableDb)
@@ -49,7 +59,7 @@ class SignupFragment : Fragment() {
             val userName = view.findViewById<EditText>(R.id.user_name_text).text.toString()
             val email = view.findViewById<EditText>(R.id.email_text).text.toString()
             val phoneNum = view.findViewById<EditText>(R.id.phone_num_text).text.toString()
-            val passWord = view.findViewById<EditText>(R.id.password_text).text.toString()
+            val passWord = view.findViewById<EditText>(R.id.edit_up_pw).text.toString()
 
             var data = arrayListOf<String>(realName,userName,email,phoneNum,passWord)
             var idPwData = arrayListOf<String>(userName,passWord)
@@ -93,4 +103,102 @@ class SignupFragment : Fragment() {
             alertDialog.show()
         }
     }
+
+    fun phoneCheck(view: View,numberList: ArrayList<String>,confirmBtn: Button) {
+        var phoneNum = view.findViewById<EditText>(R.id.phone_num_text)
+        phoneNum.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {
+                if(phoneNum.getText().toString().length > 0){
+                    for (index in 0 until phoneNum.getText().toString().length) {
+                        if (phoneNum.getText()[index].toString() in numberList) {
+                            phone_check.setText("")
+                            confirmBtn.isEnabled=true
+                        } else{
+                            phone_check.setText("숫자만\n가능")
+                            phone_check.setTextColor((getResources().getColor(R.color.red)))
+                            confirmBtn.isEnabled=false
+                        }
+                    }
+                }
+            }
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+        })
+    }
+
+    fun pwMatchMismatch(view: View,passWord:EditText,confirmBtn:Button) {
+        var passWordConfirm = view.findViewById<EditText>(R.id.edit_up_pw2)
+        passWordConfirm.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {
+                if(passWord.getText().toString() == passWordConfirm.getText().toString()){
+                   pwMatch(confirmBtn)
+                }
+            }
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                if (passWord.getText().toString() != passWordConfirm.getText().toString()){
+                    pwMisMatch(confirmBtn)
+                }
+            }
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+        })
+        passWord.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {
+                if(passWord.getText().toString() == passWordConfirm.getText().toString()){
+                    pwMatch(confirmBtn)
+                }
+            }
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                if (passWord.getText().toString() != passWordConfirm.getText().toString()){
+                    pwMisMatch(confirmBtn)
+                }
+            }
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+        })
+    }
+
+    fun pwMatch(confirmBtn: Button) {
+        pw_confirm.setText("비밀번호\n 일치")
+        pw_confirm.setTextColor((getResources().getColor(R.color.ediyacolor)))
+        confirmBtn.isEnabled=true
+    }
+
+    fun pwMisMatch(confirmBtn: Button) {
+        pw_confirm.setText("비밀번호\n 불일치")
+        pw_confirm.setTextColor((getResources().getColor(R.color.red)))
+        confirmBtn.isEnabled=false
+    }
+
+    fun pwCheck(passWord: EditText,confirmBtn:Button,numberList:ArrayList<String>) {
+        passWord.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {
+                if(passWord.getText().toString().length < 4){
+                    pw_check.setText("너무\n짧음")
+                    pw_check.setTextColor((getResources().getColor(R.color.red)))
+                    confirmBtn.isEnabled=false
+                }
+                else if (passWord.getText().toString().length >= 4) {
+                    for (index in 0 until passWord.getText().toString().length) {
+                        if (passWord.getText()[index].toString() in numberList) {
+                            pw_check.setText("사용\n가능")
+                            pw_check.setTextColor((getResources().getColor(R.color.ediyacolor)))
+                            confirmBtn.isEnabled=true
+                        } else{
+                            pw_check.setText("숫자\n필요")
+                            pw_check.setTextColor((getResources().getColor(R.color.red)))
+                            confirmBtn.isEnabled=false
+                        }
+                    }
+                }
+            }
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+        })
+    }
+
 }
