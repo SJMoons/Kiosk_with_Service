@@ -76,6 +76,9 @@ class LoginFragment: Fragment() {
             val alertDialog: AlertDialog = builder.create()
             alertDialog.show()
         } else if (dataList.size != 0) {
+            var welcomeToast = "${idValue}님 환영합니다"
+            var mainActivity = activity as MainActivity
+            mainActivity.shortToastShow(welcomeToast)
             parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, StartFragment()).commit()
         }
     }

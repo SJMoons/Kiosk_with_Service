@@ -16,6 +16,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioButton
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import kotlinx.android.synthetic.main.clickmenu_fragment.*
 import kotlinx.android.synthetic.main.main_layout.*
@@ -79,6 +80,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun shortToastShow(text: String) {
+        Toast.makeText(this@MainActivity, text, Toast.LENGTH_SHORT).show()
+
+    }
+
     fun basketServiceStart() {
         val intent = Intent(this, BasketService::class.java)
         bindService(intent, connection, Context.BIND_AUTO_CREATE)
@@ -92,14 +98,23 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun clickMenuActivity(clickMenuImage: String, clickMenuName: String, clickMenuCost: String) {
-        myService!!.clickMenuData(clickMenuImage, clickMenuName, clickMenuCost)
-        clickMenuReturn(clickMenuImage, clickMenuName, clickMenuCost)
-    }
+//        myService!!.clickMenuData(clickMenuImage, clickMenuName, clickMenuCost)
+//        clickMenuReturn(clickMenuImage, clickMenuName, clickMenuCost)
 
-    fun clickMenuReturn(clickMenuImage: String, clickMenuName: String, clickMenuCost: String) {
-        var fragment = myService!!.clickMenuData(clickMenuImage, clickMenuName, clickMenuCost)
+        var fragment = ClickMenuFragment()
+        var myBundle = Bundle()
+        myBundle.putString("menuImage", clickMenuImage)
+        myBundle.putString("menuName", clickMenuName)
+        myBundle.putString("menuCost", clickMenuCost)
+        fragment.arguments = myBundle
+
         supportFragmentManager.beginTransaction().replace(R.id.fragmentArea, fragment).commit()
     }
+
+//    fun clickMenuReturn(clickMenuImage: String, clickMenuName: String, clickMenuCost: String) {
+//        var fragment = myService!!.clickMenuData(clickMenuImage, clickMenuName, clickMenuCost)
+//        supportFragmentManager.beginTransaction().replace(R.id.fragmentArea, fragment).commit()
+//    }
 
     fun basketMenuInformActivity(
         menu: String,
@@ -113,42 +128,71 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun basketMenuInformReturn() {
-        var fragment = myService!!.basketMenuData(
-        )
+        var fragment = BasketFragment()
+        var list = myService!!.basketMenuData()
+        var myBundle = Bundle()
+        myBundle.putStringArrayList("menu",list[0])
+        myBundle.putStringArrayList("cupCount",list[1])
+        myBundle.putStringArrayList("totalCost",list[2])
+        myBundle.putStringArrayList("toppingList",list[3])
+        fragment.arguments = myBundle
         supportFragmentManager.beginTransaction().replace(R.id.fragmentArea, fragment).commit()
     }
 
     fun menuListtoBasketActivity() {
-        myService!!.menuListToBasket()
-        menuListtoBasketReturn()
-    }
-
-    fun menuListtoBasketReturn() {
-        var fragment = myService!!.menuListToBasket()
+        var fragment = BasketFragment()
+        var list = myService!!.menuListToBasket()
+        var myBundle = Bundle()
+        myBundle.putStringArrayList("menu",list[0])
+        myBundle.putStringArrayList("cupCount",list[1])
+        myBundle.putStringArrayList("totalCost",list[2])
+        myBundle.putStringArrayList("toppingList",list[3])
+        fragment.arguments = myBundle
         supportFragmentManager.beginTransaction().replace(R.id.fragmentArea, fragment).commit()
     }
+
+//    fun menuListtoBasketReturn() {
+//        var fragment = myService!!.menuListToBasket()
+//        supportFragmentManager.beginTransaction().replace(R.id.fragmentArea, fragment).commit()
+//    }
 
     fun payToBasketActivity() {
-        myService!!.payToBasket()
-        payToBasketReturn()
+        var fragment = BasketFragment()
+        var list = myService!!.payToBasket()
+        var myBundle = Bundle()
+        myBundle.putStringArrayList("menu",list[0])
+        myBundle.putStringArrayList("cupCount",list[1])
+        myBundle.putStringArrayList("totalCost",list[2])
+        myBundle.putStringArrayList("toppingList",list[4])
+        fragment.arguments = myBundle
+        supportFragmentManager.beginTransaction().replace(R.id.fragmentArea, fragment).commit()
+
     }
 
-    fun payToBasketReturn() {
-        var fragment = myService!!.payToBasket()
-        supportFragmentManager.beginTransaction().replace(R.id.fragmentArea, fragment).commit()
-    }
+//    fun payToBasketReturn() {
+//        var fragment = myService!!.payToBasket()
+//    }
 
     fun payToCompleteActivity() {
-        myService!!.payToComplete()
-        payToCompleteReturn()
-    }
-
-    fun payToCompleteReturn() {
-        var fragment = myService!!.payToComplete()
+        var fragment = StartFragment()
+        var myBundle = Bundle()
+        var list = myService!!.payToComplete()
+        myBundle.putStringArrayList("menu",list[0])
+        myBundle.putStringArrayList("cupCount",list[1])
+        myBundle.putStringArrayList("totalCost",list[2])
+        myBundle.putStringArrayList("toppingList",list[3])
+        fragment.arguments = myBundle
         supportFragmentManager.beginTransaction().replace(R.id.fragmentArea, fragment).commit()
         var notification = Intent(this,ForegroundService::class.java)
         stopService(notification)
     }
+//
+//    fun payToCompleteReturn() {
+//        var fragment = myService!!.payToComplete()
+//        supportFragmentManager.beginTransaction().replace(R.id.fragmentArea, fragment).commit()
+//        var notification = Intent(this,ForegroundService::class.java)
+//        stopService(notification)
+//    }
 
     override fun onDestroy() {
         super.onDestroy()

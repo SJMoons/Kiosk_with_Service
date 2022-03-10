@@ -32,16 +32,20 @@ class BasketFragment: Fragment() {
         var goMenuBtn = view.findViewById<Button>(R.id.basket_goback_btn)
         var payBtn = view.findViewById<Button>(R.id.basket_pay_btn)
         var requestMenu = arguments?.getStringArrayList("menu")
+        var requestCupCount = arguments?.getStringArrayList("cupCount")
+        var requestTotalCost = arguments?.getStringArrayList("totalCost")
+        var toppingList = arguments?.getStringArrayList("toppingList")
+
+//        var num = 0
+//        for (item in requestTotalCost!!) {
+//            num += item.toInt()
+//        }
+//        var requestTotalCostInt = num
 
         if (requestMenu!!.count() == 0) {
                 nothingBasket(view)
         } else {
-            var requestMenu = arguments?.getStringArrayList("menu")
             Log.d("size", "${requestMenu}")
-            var requestCupCount = arguments?.getStringArrayList("cupCount")
-            var requestTotalCost = arguments?.getIntegerArrayList("totalCost")
-            var toppingList = arguments?.getStringArrayList("toppingList")
-
             basketView(
                 view,
                 requestMenu!!,
@@ -57,10 +61,13 @@ class BasketFragment: Fragment() {
         }
 
         payBtn!!.setOnClickListener {
-            var requestTotalCost = arguments?.getIntegerArrayList("totalCost")
             if (requestMenu!!.count() != 0) {
+                        var num = 0
+                for (item in requestTotalCost!!) {
+                    num += item.toInt()
+                }
                 var mainActivity = activity as MainActivity
-                mainActivity.foreGroundServiceStart(requestMenu.count(),requestTotalCost!!.sum())
+                mainActivity.foreGroundServiceStart(requestMenu.count(),num)
                 parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, PaymentFragment())
                     .commit()
             }
@@ -72,7 +79,7 @@ class BasketFragment: Fragment() {
         view: View,
         requestMenu: ArrayList<String>,
         requestCupCount: ArrayList<String>,
-        requestTotalCost: ArrayList<Int>,
+        requestTotalCost: ArrayList<String>,
         toppingList:ArrayList<String>
     ) {
         var params = LinearLayout.LayoutParams(
@@ -123,7 +130,11 @@ class BasketFragment: Fragment() {
             toppingText.setText(toppingList[index])
             verticalLayout!!.addView(toppingText)
         }
-        totalPriceView.setText("₩ ${requestTotalCost.sum()}")
+        var num = 0
+        for (item in requestTotalCost) {
+            num += item.toInt()
+        }
+        totalPriceView.setText("₩ ${num}")
         deleteMenu(view,
             requestMenu!!,
             requestCupCount!!,
@@ -132,7 +143,7 @@ class BasketFragment: Fragment() {
         )
     }
 
-    fun deleteMenu(view:View, requestMenu: ArrayList<String>,requestCupCount:ArrayList<String>,requestTotalCost:ArrayList<Int>,toppingList: ArrayList<String>) {
+    fun deleteMenu(view:View, requestMenu: ArrayList<String>,requestCupCount:ArrayList<String>,requestTotalCost:ArrayList<String>,toppingList: ArrayList<String>) {
         for (index in 0 until requestMenu!!.count()) {
             var basketLayout = view.findViewById<LinearLayout>(R.id.basket_linear)
             var deleteBtn = view.findViewById<ImageButton>((index+6)*11)
@@ -149,8 +160,13 @@ class BasketFragment: Fragment() {
                 toppingList.removeAt(index)
                 requestTotalCost.removeAt(index)
                 totalCountView.setText("총 ${requestMenu.count()}개")
-                totalPriceView.setText("₩ ${requestTotalCost.sum()}")
-                if (requestTotalCost.sum()==0) {
+
+                var num = 0
+                for (item in requestTotalCost) {
+                    num += item.toInt()
+                }
+                totalPriceView.setText("₩ ${num}")
+                if (num==0) {
                     nothingBasket(view)
                 }
             }

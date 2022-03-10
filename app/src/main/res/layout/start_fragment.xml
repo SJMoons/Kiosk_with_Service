@@ -10,7 +10,7 @@
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="match_parent"
-        android:layout_height="360dp"
+        android:layout_height="250dp"
         android:src="@drawable/ediya_logo2"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -45,47 +45,44 @@
     </LinearLayout>
 
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3">
 
-
         <ImageView
-            android:id="@+id/image1"
-            android:layout_width="415dp"
-            android:layout_height="220dp"
-            android:src="@drawable/advertise2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:id="@+id/imageView4"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@drawable/skyy" />
 
-        <ImageView
-            android:id="@+id/image2"
+        <LinearLayout
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="80dp"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-            android:layout_width="415dp"
-            android:layout_height="220dp"
-            android:src="@drawable/advertise1" />
+            <TextView
+                android:id="@+id/user_id_text"
+                android:layout_width="100dp"
+                android:layout_height="40dp"/>
 
-        <ImageView
-            android:layout_width="415dp"
-            android:layout_height="220dp"
-            android:src="@drawable/advertise3" />
+            <TextView
+                android:gravity="center"
+                android:textColor="@color/ediyacolor"
+                android:textSize="20sp"
+                android:text="EDIYA WAY"
+                android:layout_width="120dp"
+                android:layout_height="40dp"/>
 
-    </LinearLayout>
-
-
-<!--    <androidx.viewpager.widget.ViewPager-->
-<!--        android:id="@+id/pager"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/imageView3">-->
-
+        </LinearLayout>
 
 
-<!--    </androidx.viewpager.widget.ViewPager>-->
+    </FrameLayout>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
