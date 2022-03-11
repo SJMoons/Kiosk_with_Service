@@ -35,6 +35,7 @@ class BasketFragment: Fragment() {
         var requestCupCount = arguments?.getStringArrayList("cupCount")
         var requestTotalCost = arguments?.getStringArrayList("totalCost")
         var toppingList = arguments?.getStringArrayList("toppingList")
+        var requestImage = arguments?.getStringArrayList("menuImage")
 
 //        var num = 0
 //        for (item in requestTotalCost!!) {
@@ -48,6 +49,7 @@ class BasketFragment: Fragment() {
             Log.d("size", "${requestMenu}")
             basketView(
                 view,
+                requestImage!!,
                 requestMenu!!,
                 requestCupCount!!,
                 requestTotalCost!!,
@@ -77,6 +79,7 @@ class BasketFragment: Fragment() {
 
     fun basketView(
         view: View,
+        requestImage:ArrayList<String>,
         requestMenu: ArrayList<String>,
         requestCupCount: ArrayList<String>,
         requestTotalCost: ArrayList<String>,
@@ -136,6 +139,7 @@ class BasketFragment: Fragment() {
         }
         totalPriceView.setText("₩ ${num}")
         deleteMenu(view,
+            requestImage!!,
             requestMenu!!,
             requestCupCount!!,
             requestTotalCost!!,
@@ -143,7 +147,7 @@ class BasketFragment: Fragment() {
         )
     }
 
-    fun deleteMenu(view:View, requestMenu: ArrayList<String>,requestCupCount:ArrayList<String>,requestTotalCost:ArrayList<String>,toppingList: ArrayList<String>) {
+    fun deleteMenu(view:View, requestImage:ArrayList<String>,requestMenu: ArrayList<String>,requestCupCount:ArrayList<String>,requestTotalCost:ArrayList<String>,toppingList: ArrayList<String>) {
         for (index in 0 until requestMenu!!.count()) {
             var basketLayout = view.findViewById<LinearLayout>(R.id.basket_linear)
             var deleteBtn = view.findViewById<ImageButton>((index+6)*11)
@@ -159,6 +163,7 @@ class BasketFragment: Fragment() {
                 requestCupCount.removeAt(index)
                 toppingList.removeAt(index)
                 requestTotalCost.removeAt(index)
+                requestImage.removeAt(index)
                 totalCountView.setText("총 ${requestMenu.count()}개")
 
                 var num = 0

@@ -46,6 +46,10 @@
     
     <string name="korean_please_add_menu_to_cart">장바구니에 메뉴를 넣어주세요</string>
 
+    <string name="korean_history">님의 결제 히스토리</string>
+
+    <string name="korean_with_ediya">님과 함께</string>
+
 
 
 </resources>

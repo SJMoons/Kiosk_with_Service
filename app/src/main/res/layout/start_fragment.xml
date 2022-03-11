@@ -45,9 +45,8 @@
     </LinearLayout>
 
 
-
-
     <FrameLayout
+        android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/imageView3">
@@ -59,24 +58,64 @@
             android:src="@drawable/skyy" />
 
         <LinearLayout
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="80dp"
-            android:orientation="vertical"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="100dp"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/user_id_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:textColor="@color/ediyacolor" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="@string/korean_with_ediya"
+                    android:textColor="@color/ediyacolor" />
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/user_id_text"
-                android:layout_width="100dp"
-                android:layout_height="40dp"/>
-
-            <TextView
-                android:gravity="center"
-                android:textColor="@color/ediyacolor"
-                android:textSize="20sp"
-                android:text="EDIYA WAY"
                 android:layout_width="120dp"
-                android:layout_height="40dp"/>
+                android:layout_height="34dp"
+                android:gravity="center"
+                android:text="EDIYA WAY"
+                android:textColor="@color/ediyacolor"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_marginTop="7dp"
+                    android:id="@+id/user_id_text2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:textColor="@color/ediyacolor" />
+
+                <TextView
+                    android:layout_marginTop="7dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="34dp"
+                    android:gravity="center"
+                    android:text="@string/korean_history"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
 
         </LinearLayout>
 
@@ -84,5 +123,20 @@
     </FrameLayout>
 
 
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout">
+
+        <LinearLayout
+            android:id="@+id/history_linear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

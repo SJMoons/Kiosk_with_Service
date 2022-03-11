@@ -66,7 +66,8 @@ class SignupFragment : Fragment() {
         val builder: AlertDialog.Builder = AlertDialog.Builder(context)
 
         var idColumn = arrayListOf<String>("id")
-        var dataList = dbControl.read(readableDb,"idpw_table",idColumn,userNameData)
+        var sql = dbControl.makeReadSql("idpw_table",idColumn,userNameData)
+        var dataList = dbControl.readIdPW(readableDb,sql)
 
         if (dataList.size == 0 && getUserName.count() != 0) {
             idCheckNum += 1
@@ -194,18 +195,6 @@ class SignupFragment : Fragment() {
     }
 
     fun signUpEvent(view: View,writeableDb:SQLiteDatabase,confirmBtn: Button) {
-        val firstName = view.findViewById<EditText>(R.id.first_name_text).getText()
-        val lastName = view.findViewById<EditText>(R.id.last_name_text).getText()
-        val realName = "${lastName}${firstName}"
-        val userName = view.findViewById<EditText>(R.id.user_name_text).getText()
-        val email = view.findViewById<EditText>(R.id.email_text).getText()
-        val phoneNum = view.findViewById<EditText>(R.id.phone_num_text).getText()
-        val passWord = view.findViewById<EditText>(R.id.edit_up_pw).getText()
-        val passWordConfirm = view.findViewById<EditText>(R.id.edit_up_pw2).getText()
-
-        var data = arrayListOf<String>(realName,userName.toString(),email.toString(),phoneNum.toString(),passWord.toString())
-        var idPwData = arrayListOf<String>(userName.toString(),passWord.toString())
-
         var idPwColumn = arrayListOf<String>("id","pw")
         var column = arrayListOf<String>("name","id","email","phonenum","pw")
 
@@ -220,8 +209,19 @@ class SignupFragment : Fragment() {
         var pwText = "비밀번호를 입력해주세요"
         var pwConfirmText = "비밀번호를 확인해주세요"
 
-
             confirmBtn.setOnClickListener{
+                val firstName = view.findViewById<EditText>(R.id.first_name_text).getText()
+                val lastName = view.findViewById<EditText>(R.id.last_name_text).getText()
+                val realName = "${lastName}${firstName}"
+                val userName = view.findViewById<EditText>(R.id.user_name_text).getText()
+                val email = view.findViewById<EditText>(R.id.email_text).getText()
+                val phoneNum = view.findViewById<EditText>(R.id.phone_num_text).getText()
+                val passWord = view.findViewById<EditText>(R.id.edit_up_pw).getText()
+                val passWordConfirm = view.findViewById<EditText>(R.id.edit_up_pw2).getText()
+
+                var data = arrayListOf<String>(realName,userName.toString(),email.toString(),phoneNum.toString(),passWord.toString())
+                var idPwData = arrayListOf<String>(userName.toString(),passWord.toString())
+
                 if (firstName.count()==0 ){
                     var mainActivity = activity as MainActivity
                     mainActivity.shortToastShow(firstNameText)

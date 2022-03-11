@@ -9,11 +9,19 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 
 class BasketService : Service(){
+    var historyImage = ArrayList<String>()
+    var historyMenu = ArrayList<String>()
+    var historyCupCount = ArrayList<String>()
+    var historyToppingList = ArrayList<String>()
+    var historyTotalCost = ArrayList<String>()
+
+    var appendImage = ArrayList<String>()
     var appendMenu = ArrayList<String>()
     var appendCupCount = ArrayList<String>()
     var appendTotalCost = ArrayList<String>()
     var toppingList = ArrayList<String>()
     var text: String = ""
+    var id = ArrayList<String>()
     inner class MyBinder : Binder()  {
         fun getService() : BasketService {
             return this@BasketService
@@ -21,16 +29,20 @@ class BasketService : Service(){
     }
     val binder = MyBinder()
 
-    override fun onBind(intent: Intent): IBinder? {
+    override fun onBind(intent: Intent): IBinder {
         return  binder
     }
 
-//    fun clickMenuData(menuImage: String, menuName: String, menuCost: String) {
-//        Log.d("mm","${menuCost}")
-//
-//    }
+    fun idData(idValue:String){
+        id.add(idValue)
+    }
 
-    fun basketMenuAdd(menu:String, cupCount:String, totalCost:String, toppingQuantity: ArrayList<String>, toppingLocationNum:ArrayList<Int>) {
+    fun startIdReturn(): String{
+        return id[0]
+    }
+
+    fun basketMenuAdd(menuImage:String, menu:String, cupCount:String, totalCost:String, toppingQuantity: ArrayList<String>, toppingLocationNum:ArrayList<Int>) {
+        appendImage.add(menuImage)
         appendMenu.add(menu)
         appendCupCount.add(cupCount)
         appendTotalCost.add(totalCost)
@@ -44,7 +56,7 @@ class BasketService : Service(){
     }
 
     fun basketMenuData():ArrayList<ArrayList<String>> {
-        var list = arrayListOf<ArrayList<String>>(appendMenu,appendCupCount,appendTotalCost,toppingList)
+        var list = arrayListOf<ArrayList<String>>(appendMenu,appendCupCount,appendTotalCost,toppingList,appendImage)
         return list
     }
 
@@ -53,26 +65,32 @@ class BasketService : Service(){
         return list
     }
 
-
-
     fun payToBasket() :ArrayList<ArrayList<String>> {
         var list = arrayListOf<ArrayList<String>>(appendMenu,appendCupCount,appendTotalCost,toppingList)
-
         return list
     }
 
     fun payToComplete() : ArrayList<ArrayList<String>> {
-        var list = arrayListOf<ArrayList<String>>(appendMenu,appendCupCount,appendTotalCost,toppingList)
-        list[0].clear()
-        list[1].clear()
-        list[2].clear()
-        list[3].clear()
+        var historyMenu = ArrayList<String>(appendMenu)
+        Log.d("menu","$historyMenu")
+        var historyImage = ArrayList<String>(appendImage)
+        Log.d("menu","$historyImage")
+        historyCupCount = appendCupCount
+        historyToppingList = toppingList
+        historyTotalCost = appendTotalCost
+
+        var list = arrayListOf<ArrayList<String>>(id,historyImage,historyMenu)
+        appendMenu.clear()
+        appendImage.clear()
+        appendCupCount.clear()
+        toppingList.clear()
+        appendTotalCost.clear()
         return list
     }
-//    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-//
-//        return super.onStartCommand(intent, flags, startId)
-//    }
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+
+        return super.onStartCommand(intent, flags, startId)
+    }
     override fun onDestroy() {
         super.onDestroy()
     }

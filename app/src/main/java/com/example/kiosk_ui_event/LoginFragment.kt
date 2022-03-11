@@ -19,8 +19,6 @@ import android.widget.EditText
 import androidx.fragment.app.Fragment
 
 class LoginFragment: Fragment() {
-    lateinit var language_code:String
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -28,7 +26,8 @@ class LoginFragment: Fragment() {
     ): View {
         var view: View = inflater.inflate(R.layout.login_fragment, container, false)
         var signupBtn = view.findViewById<Button>(R.id.signup_btn)
-
+        var mainActivity = activity as MainActivity
+        mainActivity.basketServiceStart()
         signupBtn.setOnClickListener{
             parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, SignupFragment()).commit()
         }
@@ -68,7 +67,8 @@ class LoginFragment: Fragment() {
 
         var idPwData = arrayListOf<String>(idValue,pwValue)
         var idPwColumn = arrayListOf<String>("id","pw")
-        val dataList = dbControl.read(readableDb,"idpw_table",idPwColumn,idPwData)
+        var sql = dbControl.makeReadSql("idpw_table",idPwColumn,idPwData)
+        val dataList = dbControl.readIdPW(readableDb,sql)
 
         if (idValue.count() == 0 || dataList.size == 0) {
             builder.setMessage("이디야 ID 또는 비밀번호를 다시 확인해주세요")
@@ -78,8 +78,8 @@ class LoginFragment: Fragment() {
         } else if (dataList.size != 0) {
             var welcomeToast = "${idValue}님 환영합니다"
             var mainActivity = activity as MainActivity
+            mainActivity.idInform(idValue)
             mainActivity.shortToastShow(welcomeToast)
-            parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, StartFragment()).commit()
         }
     }
 }

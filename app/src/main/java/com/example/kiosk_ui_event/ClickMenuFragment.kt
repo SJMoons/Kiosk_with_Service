@@ -70,7 +70,7 @@ class ClickMenuFragment(): Fragment() {
 //            parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, MenuListFragment())
 //                .commit()
             var mainActivity = activity as MainActivity
-            mainActivity.basketMenuInformActivity("${menuName}","${count}","${(menuCost!!.toInt()+totalToppingPrice.sum())*count}",appendToppingQuantity,toppingLocationNum)
+            mainActivity.basketMenuInformActivity("$menuImage","${menuName}","${count}","${(menuCost!!.toInt()+totalToppingPrice.sum())*count}",appendToppingQuantity,toppingLocationNum)
             Log.d("dbug","${menuName}")
 //            dataInterface.menuInformPass("${menuName}","${count}","${(menuCost!!.toInt()+totalToppingPrice.sum())*count}",appendToppingQuantity,toppingLocationNum,appendToppingName)
         }

@@ -25,8 +25,6 @@ class MenuListFragment: Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         var view : View = inflater.inflate(R.layout.menulist_fragment, container,false)
-        var mainActivity = activity as MainActivity
-        mainActivity.basketServiceStart()
         buttonEvent(view)
 
         return view
@@ -71,8 +69,9 @@ class MenuListFragment: Fragment() {
             )
 
             gobackBtn!!.setOnClickListener {
-                parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, StartFragment())
-                    .commit()
+                Log.d("fun","11")
+                var mainActivity = activity as MainActivity
+                mainActivity.menuToStartIdData()
             }
             basketBtn!!.setOnClickListener {
                 var mainActivity = activity as MainActivity

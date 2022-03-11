@@ -63,6 +63,7 @@ class MainActivity : AppCompatActivity() {
             setLocate("en")
             recreate()
         }
+
     }
 
 
@@ -97,33 +98,45 @@ class MainActivity : AppCompatActivity() {
             startService(intent)
     }
 
-    fun clickMenuActivity(clickMenuImage: String, clickMenuName: String, clickMenuCost: String) {
-//        myService!!.clickMenuData(clickMenuImage, clickMenuName, clickMenuCost)
-//        clickMenuReturn(clickMenuImage, clickMenuName, clickMenuCost)
+    fun idInform(idValue:String) {
+        Log.d("idd","$idValue")
+        myService?.idData(idValue)
+        var fragment = StartFragment()
+        var myBundle = Bundle()
+        myBundle.putString("id", idValue)
+        fragment.arguments = myBundle
+        supportFragmentManager.beginTransaction().replace(R.id.fragmentArea, fragment).commit()
+    }
 
+    fun menuToStartIdData() {
+        var idReturn = myService!!.startIdReturn()
+        var fragment = StartFragment()
+        var myBundle = Bundle()
+        myBundle.putString("id", idReturn)
+        fragment.arguments = myBundle
+        supportFragmentManager.beginTransaction().replace(R.id.fragmentArea, fragment).commit()
+
+    }
+
+    fun clickMenuActivity(clickMenuImage: String, clickMenuName: String, clickMenuCost: String) {
         var fragment = ClickMenuFragment()
         var myBundle = Bundle()
         myBundle.putString("menuImage", clickMenuImage)
         myBundle.putString("menuName", clickMenuName)
         myBundle.putString("menuCost", clickMenuCost)
         fragment.arguments = myBundle
-
         supportFragmentManager.beginTransaction().replace(R.id.fragmentArea, fragment).commit()
     }
 
-//    fun clickMenuReturn(clickMenuImage: String, clickMenuName: String, clickMenuCost: String) {
-//        var fragment = myService!!.clickMenuData(clickMenuImage, clickMenuName, clickMenuCost)
-//        supportFragmentManager.beginTransaction().replace(R.id.fragmentArea, fragment).commit()
-//    }
-
     fun basketMenuInformActivity(
+        menuImage: String,
         menu: String,
         cupCount: String,
         totalCost: String,
         toppingQuantity: ArrayList<String>,
         toppingLocationNum: ArrayList<Int>
     ) {
-        myService!!.basketMenuAdd(menu, cupCount, totalCost, toppingQuantity, toppingLocationNum)
+        myService!!.basketMenuAdd(menuImage, menu, cupCount, totalCost, toppingQuantity, toppingLocationNum)
         basketMenuInformReturn()
     }
 
@@ -135,6 +148,7 @@ class MainActivity : AppCompatActivity() {
         myBundle.putStringArrayList("cupCount",list[1])
         myBundle.putStringArrayList("totalCost",list[2])
         myBundle.putStringArrayList("toppingList",list[3])
+        myBundle.putStringArrayList("menuImage",list[4])
         fragment.arguments = myBundle
         supportFragmentManager.beginTransaction().replace(R.id.fragmentArea, fragment).commit()
     }
@@ -151,10 +165,6 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction().replace(R.id.fragmentArea, fragment).commit()
     }
 
-//    fun menuListtoBasketReturn() {
-//        var fragment = myService!!.menuListToBasket()
-//        supportFragmentManager.beginTransaction().replace(R.id.fragmentArea, fragment).commit()
-//    }
 
     fun payToBasketActivity() {
         var fragment = BasketFragment()
@@ -166,33 +176,30 @@ class MainActivity : AppCompatActivity() {
         myBundle.putStringArrayList("toppingList",list[4])
         fragment.arguments = myBundle
         supportFragmentManager.beginTransaction().replace(R.id.fragmentArea, fragment).commit()
-
     }
 
-//    fun payToBasketReturn() {
-//        var fragment = myService!!.payToBasket()
-//    }
-
     fun payToCompleteActivity() {
+        val db = DataBase(this,"Account.db",null,1)  //데어터베이스 class 객체 선언
+        val dbControl = DatabaseControl()
+        val writeableDb = db.writableDatabase
+
+        var list = myService!!.payToComplete()
+        Log.d("ss","${list}")
+        for (index in 0 until list[1].size) {
+            var data = arrayListOf<String>(list[0][0],list[1][index],list[2][index])
+
+            var idHistoryColumn = arrayListOf<String>("id","menuimage","menu")
+            dbControl.create(writeableDb,"idhistory_table",idHistoryColumn,data)
+        }
+
         var fragment = StartFragment()
         var myBundle = Bundle()
-        var list = myService!!.payToComplete()
-        myBundle.putStringArrayList("menu",list[0])
-        myBundle.putStringArrayList("cupCount",list[1])
-        myBundle.putStringArrayList("totalCost",list[2])
-        myBundle.putStringArrayList("toppingList",list[3])
+        myBundle.putString("id",list[0][0])
         fragment.arguments = myBundle
         supportFragmentManager.beginTransaction().replace(R.id.fragmentArea, fragment).commit()
         var notification = Intent(this,ForegroundService::class.java)
         stopService(notification)
     }
-//
-//    fun payToCompleteReturn() {
-//        var fragment = myService!!.payToComplete()
-//        supportFragmentManager.beginTransaction().replace(R.id.fragmentArea, fragment).commit()
-//        var notification = Intent(this,ForegroundService::class.java)
-//        stopService(notification)
-//    }
 
     override fun onDestroy() {
         super.onDestroy()

@@ -6,7 +6,7 @@ import android.util.Log
 
 class DatabaseControl {
 
-    fun read(database:SQLiteDatabase, table: String, column: ArrayList<String>, data:ArrayList<String>): ArrayList<ArrayList<String>> {
+    fun makeReadSql(table: String, column: ArrayList<String>, data:ArrayList<String>): String {
         var sql = "SELECT" + " * " + "FROM " + table + " WHERE "
         for (index in 0 until column.count()) {
             sql +=  column[index] + "=" + "'" + data[index] + "'"
@@ -14,7 +14,10 @@ class DatabaseControl {
                 sql += " and "
             }
         }
+        return sql
+    }
 
+    fun readIdPW(database:SQLiteDatabase,sql:String): ArrayList<ArrayList<String>>{
         var result: Cursor = database.rawQuery(sql, null)
         val dataList = ArrayList<ArrayList<String>>()
 
@@ -23,6 +26,20 @@ class DatabaseControl {
             val id = result.getString(1)
             val pw = result.getString(2)
             val raw = arrayListOf(seq.toString(),id,pw)
+            dataList.add(raw)
+        }
+        result.close()
+        return dataList
+    }
+
+    fun readPaymentHistory(database:SQLiteDatabase,sql:String): ArrayList<ArrayList<String>>{
+        var result: Cursor = database.rawQuery(sql, null)
+        val dataList = ArrayList<ArrayList<String>>()
+
+        while (result.moveToNext()) {// 다음 raw로 넘어감
+            val image = result.getString(2)
+            val menu = result.getString(3)
+            val raw = arrayListOf(image,menu)
             dataList.add(raw)
         }
         result.close()

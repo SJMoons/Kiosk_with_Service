@@ -29,4 +29,6 @@
     <string name="korean_barcode_payment">barcode payment</string>
     <string name="korean_please_put_the_barcode_on_the_screen">Please put the barcode on the screen</string>
     <string name="korean_please_add_menu_to_cart">Please add menu to cart</string>
+    <string name="korean_history">\'s payment history</string>
+    <string name="korean_with_ediya">with EDIYA</string>
 </resources>
