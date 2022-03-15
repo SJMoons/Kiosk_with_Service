@@ -13,16 +13,28 @@
         android:src="@drawable/ediya_logo"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <FrameLayout
+<!--    <FrameLayout-->
+<!--        android:id="@+id/fragmentArea"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/imageView2">-->
+<!--        -->
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentArea"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2">
 
-        <fragment
-            android:name="com.example.kiosk_ui_event.LoginFragment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </FrameLayout>
+    </androidx.fragment.app.FragmentContainerView>
+
+<!--    </FrameLayout>-->
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+    <!--            class = "com.example.kiosk_ui_event.LoginFragment"-->
+    <!--            android:name="com.example.kiosk_ui_event.LoginFragment"-->
+
+
+

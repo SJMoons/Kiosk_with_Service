@@ -208,7 +208,7 @@
                 android:background="@drawable/goback_btn"
                 android:id="@+id/signup_cancel_btn"
                 android:layout_marginTop="10dp"
-                android:text="cancel"
+                android:text="@string/korean_cancel"
                 android:textColor="@color/ediyacolor"
                 android:layout_marginLeft="65dp"
                 android:layout_width="100dp"
@@ -217,7 +217,7 @@
             <Button
                 android:id="@+id/confirm_btn"
                 android:layout_marginTop="10dp"
-                android:text="confirm"
+                android:text="@string/korean_select"
                 android:textColor="@color/white"
                 android:background="@drawable/ediya_btn"
                 android:layout_marginLeft="70dp"

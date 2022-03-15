@@ -17,53 +17,43 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat
 import kotlinx.android.synthetic.main.clickmenu_fragment.*
 import kotlinx.android.synthetic.main.main_layout.*
+import kotlinx.android.synthetic.main.setting_fragment.*
 import kotlinx.android.synthetic.main.start_fragment.*
 import java.util.*
 import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
-    lateinit var language_code:String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_layout)
-
-        DataBase(this,"Account.db",null,1)  //데어터베이스 class 객체 선언
-
-        var korean = findViewById<RadioButton>(R.id.korean_btn)
-        var english = findViewById<RadioButton>(R.id.english_btn)
-
-        // 저장된 언어 코드를 불러온다.
-        val sharedPreferences = getSharedPreferences(
-            "Settings",
-            Activity.MODE_PRIVATE
-        )
-        val language = sharedPreferences.getString("My_Lang", "")
-        if (language != null) {
-            Log.d("로그", "language :"+language)
-            language_code = language
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction().replace(R.id.fragmentArea,LoginFragment()).commit()
         }
 
-        // 저장된 언어코드에 따라 라디오 버튼을 체크해준다.
-        if(language_code.equals("ko") || language_code.equals("")){
-            korean.setChecked(true);
-        }else{
-            english.setChecked(true);
+        Log.d("tag",MyApp.prefs.setLanguage)
+
+        if (MyApp.prefs.setLanguage == "ko") {
+
+            language("ko")
+        } else if (MyApp.prefs.setLanguage == "en") {
+            language("en")
         }
 
-        //한국어 라디오 버튼 변경
-        korean.setOnClickListener {
-            setLocate("ko")
-            recreate()
-        }
-        // 영어 라디오 버튼 변경
-        english.setOnClickListener {
-            setLocate("en")
-            recreate()
-        }
+    }
 
+    fun language(language:String) {
+        val config = resources.configuration
+        val locale = Locale(language)
+        Locale.setDefault(locale)
+        config.setLocale(locale)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+            createConfigurationContext(config)
+        }
+        resources.updateConfiguration(config,resources.displayMetrics)
     }
 
 
@@ -115,7 +105,6 @@ class MainActivity : AppCompatActivity() {
         myBundle.putString("id", idReturn)
         fragment.arguments = myBundle
         supportFragmentManager.beginTransaction().replace(R.id.fragmentArea, fragment).commit()
-
     }
 
     fun clickMenuActivity(clickMenuImage: String, clickMenuName: String, clickMenuCost: String) {
@@ -173,7 +162,8 @@ class MainActivity : AppCompatActivity() {
         myBundle.putStringArrayList("menu",list[0])
         myBundle.putStringArrayList("cupCount",list[1])
         myBundle.putStringArrayList("totalCost",list[2])
-        myBundle.putStringArrayList("toppingList",list[4])
+        myBundle.putStringArrayList("toppingList",list[3])
+        myBundle.putStringArrayList("menuImage",list[4])
         fragment.arguments = myBundle
         supportFragmentManager.beginTransaction().replace(R.id.fragmentArea, fragment).commit()
     }
@@ -199,6 +189,15 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction().replace(R.id.fragmentArea, fragment).commit()
         var notification = Intent(this,ForegroundService::class.java)
         stopService(notification)
+    }
+
+    fun settingToStart() {
+        var fragment = StartFragment()
+        var id = myService!!.settingToStart()
+        var myBundle = Bundle()
+        myBundle.putString("id",id)
+        fragment.arguments = myBundle
+        supportFragmentManager.beginTransaction().replace(R.id.fragmentArea, fragment).commit()
     }
 
     override fun onDestroy() {
@@ -227,87 +226,3 @@ class MainActivity : AppCompatActivity() {
     }
 
 }
-
-//    override fun menuInformPass(menu:String, cupCount:String, totalCost:String, toppingQuantity: ArrayList<String>, toppingLocationNum:ArrayList<Int>, toppingName:ArrayList<String>) {
-//        var fragment = BasketFragment()
-//        var myBundle = Bundle()
-//
-//        appendMenu.add(menu)
-//        appendCupCount.add(cupCount)
-//        appendTotalCost.add(totalCost.toInt())
-//
-//        var toppingArray = resources.getStringArray(R.array.topping_name)
-//            for (i in toppingLocationNum) {
-//                text += "${toppingArray[i]} X${toppingQuantity[i]}  "
-//            }
-//        toppingList.add(text)
-//        Log.d("toppingList","${toppingList}")
-//        text =""
-//
-//        myBundle.putStringArrayList("menu",appendMenu)
-//        myBundle.putStringArrayList("cupCount",appendCupCount)
-//        myBundle.putIntegerArrayList("totalCost",appendTotalCost)
-//        myBundle.putStringArrayList("toppingList",toppingList)
-//        fragment.arguments = myBundle
-//        supportFragmentManager.beginTransaction().replace(R.id.fragmentArea, fragment).commit()
-//    }
-
-//    override fun clickMenuData(menuImage:String, menuName: String, menuCost: String) {
-//        var fragment = ClickMenuFragment()
-//        var myBundle = Bundle()
-//        myBundle.putString("menuImage", menuImage)
-//        myBundle.putString("menuName", menuName)
-//        myBundle.putString("menuCost", menuCost)
-//        fragment.arguments = myBundle
-//        supportFragmentManager.beginTransaction().replace(R.id.fragmentArea, fragment).commit()
-//    }
-
-//    override fun menuListToBasket() {
-//        var fragment = BasketFragment()
-//        var myBundle = Bundle()
-//        myBundle.putStringArrayList("menu",appendMenu)
-//        myBundle.putStringArrayList("cupCount",appendCupCount)
-//        myBundle.putIntegerArrayList("totalCost",appendTotalCost)
-//        myBundle.putStringArrayList("toppingList",toppingList)
-//        fragment.arguments = myBundle
-//        supportFragmentManager.beginTransaction().replace(R.id.fragmentArea, fragment).commit()
-//    }
-
-//    override fun payToBasket() {
-//        var fragment = BasketFragment()
-//        var myBundle = Bundle()
-//        myBundle.putStringArrayList("menu",appendMenu)
-//        myBundle.putStringArrayList("cupCount",appendCupCount)
-//        myBundle.putIntegerArrayList("totalCost",appendTotalCost)
-//        myBundle.putStringArrayList("toppingList",toppingList)
-//        fragment.arguments = myBundle
-//        supportFragmentManager.beginTransaction().replace(R.id.fragmentArea, fragment).commit()
-//    }
-//}
-
-
-
-
-//    //페이지 변경하기
-//    fun setPage(){
-//        if(currentPosition==2) {
-//            currentPosition = 0
-//        }
-//            pager.setCurrentItem(currentPosition,true)
-//            currentPosition+=1
-//
-//    }
-//
-////    var startFragment = fragmentArea as StartFragment
-//    //2초 마다 페이지 넘기기
-//    inner class PagerRunnable:Runnable{
-//        override fun run() {
-//            while(true){
-//                Thread.sleep(2000)
-//                handler.sendEmptyMessage(0)
-////                if (startFragment.startNum ==1) {
-////                    break
-////                }
-//            }
-//        }
-//    }

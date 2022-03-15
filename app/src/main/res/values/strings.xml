@@ -3,7 +3,6 @@
     <string name="korean_togo">포장</string>
     <string name="korean_instore">매장</string>
 
-
     <string name="korean_coffee_category">커피</string>
     <string name="korean_ade_category">에이드</string>
     <string name="korean_shake_category">쉐이크</string>
@@ -49,6 +48,10 @@
     <string name="korean_history">님의 결제 히스토리</string>
 
     <string name="korean_with_ediya">님과 함께</string>
+
+    <string name="korean_setting">설정</string>
+
+    <string name="korean_id_check">중복확인</string>
 
 
 

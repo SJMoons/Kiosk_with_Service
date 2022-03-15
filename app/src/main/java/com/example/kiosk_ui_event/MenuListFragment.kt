@@ -120,6 +120,10 @@ class MenuListFragment: Fragment() {
                 if (mainActivity.myService!!.appendMenu.isNotEmpty()) {
                     parentFragmentManager.beginTransaction()
                         .replace(R.id.fragmentArea, PaymentFragment()).commit()
+                } else {
+                    var alert = "장바구니에 음료가 없습니다"
+                    var mainActivity = activity as MainActivity
+                    mainActivity.shortToastShow(alert)
                 }
             }
         }

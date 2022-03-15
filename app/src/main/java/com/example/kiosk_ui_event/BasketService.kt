@@ -66,7 +66,8 @@ class BasketService : Service(){
     }
 
     fun payToBasket() :ArrayList<ArrayList<String>> {
-        var list = arrayListOf<ArrayList<String>>(appendMenu,appendCupCount,appendTotalCost,toppingList)
+        var list = arrayListOf<ArrayList<String>>(appendMenu,appendCupCount,appendTotalCost,toppingList,appendImage)
+        Log.d("image","$appendImage")
         return list
     }
 
@@ -75,9 +76,9 @@ class BasketService : Service(){
         Log.d("menu","$historyMenu")
         var historyImage = ArrayList<String>(appendImage)
         Log.d("menu","$historyImage")
-        historyCupCount = appendCupCount
-        historyToppingList = toppingList
-        historyTotalCost = appendTotalCost
+//        historyCupCount = appendCupCount
+//        historyToppingList = toppingList
+//        historyTotalCost = appendTotalCost
 
         var list = arrayListOf<ArrayList<String>>(id,historyImage,historyMenu)
         appendMenu.clear()
@@ -87,6 +88,11 @@ class BasketService : Service(){
         appendTotalCost.clear()
         return list
     }
+
+    fun settingToStart(): String {
+        return id[0]
+    }
+
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 
         return super.onStartCommand(intent, flags, startId)

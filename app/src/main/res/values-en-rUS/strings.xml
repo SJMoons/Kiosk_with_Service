@@ -31,4 +31,6 @@
     <string name="korean_please_add_menu_to_cart">Please add menu to cart</string>
     <string name="korean_history">\'s payment history</string>
     <string name="korean_with_ediya">with EDIYA</string>
+    <string name="korean_setting">SETTING</string>
+    <string name="korean_id_check">ID CHECK</string>
 </resources>

@@ -7,6 +7,7 @@ import android.content.Context.MODE_PRIVATE
 import android.content.res.Configuration
 import android.database.sqlite.SQLiteDatabase
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -16,7 +17,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.RadioButton
 import androidx.fragment.app.Fragment
+import java.util.*
 
 class LoginFragment: Fragment() {
     override fun onCreateView(
@@ -36,6 +40,12 @@ class LoginFragment: Fragment() {
         val readableDb = db.readableDatabase            //데이터베이스 객체를 읽기 가능 상태로 만듦
         val loginBtn = view.findViewById<Button>(R.id.login_btn)
         var pwText = view.findViewById<EditText>(R.id.pw_text)
+        var settingBtn = view.findViewById<ImageButton>(R.id.setting_btn)
+
+
+        settingBtn!!.setOnClickListener{
+            parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, SettingFragment()).commit()
+        }
 
         pwText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
@@ -56,8 +66,25 @@ class LoginFragment: Fragment() {
             }
         })
 
+
+        var korean : Button? =  view.findViewById<RadioButton>(R.id.korean_btn)
+        var english : Button? = view.findViewById<RadioButton>(R.id.english_btn)
+
+        korean!!.setOnClickListener {
+            var mainActivity = activity as MainActivity
+            MyApp.prefs.setLanguage = "ko"
+            mainActivity.language("ko")
+        }
+        // 영어 라디오 버튼 변경
+        english!!.setOnClickListener {
+            var mainActivity = activity as MainActivity
+            MyApp.prefs.setLanguage = "en"
+            mainActivity.language("en")
+        }
+
         return view
     }
+
 
     fun loginPass(view:View,readableDb:SQLiteDatabase){
         val idValue = view.findViewById<EditText>(R.id.id_text).text.toString()
